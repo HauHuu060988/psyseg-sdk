@@ -11,6 +11,3 @@ export const callInteger1 =()=>{
 export const callString1 =()=>{
 	return 'Hello world'
 }
-//
-// exports.callInteger = 100
-// exports.callString = 'Hello world'
