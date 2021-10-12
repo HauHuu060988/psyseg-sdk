@@ -828,4 +828,9 @@ export async function psy_seg_remove_background_with_extra_params(pPsySeg, pInCo
 	return status;
 }
 
-exports.testCall = 'getTeamRandom'
+export const callInteger =()=>{
+	tf.engine().startScope();
+	console.log('callInteger')
+	tf.engine().endScope();
+	return 100
+}

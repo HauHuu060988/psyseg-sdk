@@ -1,6 +1,6 @@
 //! Tensorflow JS library
 import * as tf from '@tensorflow/tfjs';
-import { PsySegBuf, ColorSpaceType } from '../PsySeg.js';
+import { PsySegBuf, ColorSpaceType } from '../PsySeg.mjs';
 import { preProcessing } from "../Preprocessing/Preprocessing.js";
 
 //! Strict mode
