@@ -1,1 +1,833 @@
-const _0x5efd8f=_0x5f34;(function(_0x24756f,_0x438d42){const _0x19fd4d=_0x5f34,_0x135a4a=_0x24756f();while(!![]){try{const _0x8ed94b=parseInt(_0x19fd4d(0x9c))/0x1+parseInt(_0x19fd4d(0xb1))/0x2+parseInt(_0x19fd4d(0x9b))/0x3+parseInt(_0x19fd4d(0xb5))/0x4*(-parseInt(_0x19fd4d(0x9f))/0x5)+-parseInt(_0x19fd4d(0xb8))/0x6+parseInt(_0x19fd4d(0xab))/0x7*(-parseInt(_0x19fd4d(0xba))/0x8)+parseInt(_0x19fd4d(0xbd))/0x9*(parseInt(_0x19fd4d(0xa3))/0xa);if(_0x8ed94b===_0x438d42)break;else _0x135a4a['push'](_0x135a4a['shift']());}catch(_0x820a4f){_0x135a4a['push'](_0x135a4a['shift']());}}}(_0x288b,0x9cc33));import*as _0x493b76 from'@tensorflow/tfjs';import{SmartEyes}from'./ML/ML.js';import{preProcessing}from'./Preprocessing/Preprocessing.js';import{psy_seg_overlay_background_internal,psy_seg_blur_background_internal,psy_seg_remove_background_internal}from'./Effects/Effects.js';import{psy_seg_get_alpha_internal}from'./Effects/Common.js';import{refine}from'./Refinement/Refinement.js';_0x5efd8f(0xc0);export function ColorSpaceType(){return{'COLOR_SPACE_RGBA':0x0,'COLOR_SPACE_BGR':0x1,'COLOR_SPACE_RGB':0x2,'COLOR_SPACE_NV21':0x3,'COLOR_SPACE_NV12':0x4,'COLOR_SPACE_I420':0x5,'COLOR_SPACE_YUY2':0x6};};function _0x288b(){const _0x1fd291=['canvas','tidy','run','fgCanvas','1355560GGmgUZ','height','Cannot\x20get\x20alpha\x20mask\x20due\x20to\x20','log','1923676CNuVTQ','clearRect','toPixels','4469898YUBlJH','getContext','5006248LnJaxt','runUE','Cannot\x20create\x20background\x20due\x20to\x20','9AfaQOA','1.5.0','catch','use\x20strict','putImageData','backend','browser','bind','SmartEyes','model','Cannot\x20get\x20alpha\x20effects\x20due\x20to\x20','3762483bEZtUb','410838HfUbre','reshape','tflite','10ohNpkc','div','canvasContext','fgCanvasContext','6319220dKOpbB','then','startScope','COLOR_SPACE_RGBA','endScope','data','width','colorWidth','7uriPGQ','engine'];_0x288b=function(){return _0x1fd291;};return _0x288b();}export function PsySegSetupInfo(_0x2d9bd5,_0x369979){return{'colorWidth':_0x2d9bd5,'colorHeight':_0x369979};}function _0x5f34(_0x42d9b7,_0x273bb5){const _0x288b1e=_0x288b();return _0x5f34=function(_0x5f3493,_0x5bdf8f){_0x5f3493=_0x5f3493-0x99;let _0x14fad9=_0x288b1e[_0x5f3493];return _0x14fad9;},_0x5f34(_0x42d9b7,_0x273bb5);};export function PsySegExtraParams(_0x31435e=0x1){return{'erode':_0x31435e};}export function PsySegBuf(_0xab0c77,_0x76ff22,_0xde2699,_0x41a1b0){return{'width':_0xab0c77,'height':_0x76ff22,'channels':_0xde2699,'data':_0x41a1b0};};class PsySeg{constructor(_0x2f41c5,_0x3e0b73){const _0x3bc7fc=_0x5efd8f;this[_0x3bc7fc(0xa9)]=_0x2f41c5[_0x3bc7fc(0xaa)],this[_0x3bc7fc(0xb2)]=_0x2f41c5['colorHeight'],this[_0x3bc7fc(0xc2)]=_0x3e0b73,this[_0x3bc7fc(0xad)]=document['createElement']('canvas'),this[_0x3bc7fc(0xad)][_0x3bc7fc(0xa9)]=this['width'],this[_0x3bc7fc(0xad)][_0x3bc7fc(0xb2)]=this[_0x3bc7fc(0xb2)],this[_0x3bc7fc(0xa1)]=this['canvas'][_0x3bc7fc(0xb9)]('2d'),this[_0x3bc7fc(0xb0)]=document['createElement'](_0x3bc7fc(0xad)),this[_0x3bc7fc(0xb0)][_0x3bc7fc(0xa9)]=this[_0x3bc7fc(0xa9)],this['fgCanvas'][_0x3bc7fc(0xb2)]=this[_0x3bc7fc(0xb2)],this[_0x3bc7fc(0xa2)]=this[_0x3bc7fc(0xb0)][_0x3bc7fc(0xb9)]('2d'),this[_0x3bc7fc(0xc5)]=null,this[_0x3bc7fc(0xc5)]=new SmartEyes(this[_0x3bc7fc(0xc2)]),this[_0x3bc7fc(0xbb)]=this[_0x3bc7fc(0xbb)][_0x3bc7fc(0xc4)](this);}async[_0x5efd8f(0xbb)](_0x269ba4,_0x37008f,_0x3444cc,_0x3bc799=![]){const _0x18538b=_0x5efd8f;let _0x3112ea=![],_0x132f05=null;_0x3112ea=![];const _0x330af6=this['backend']===_0x18538b(0x9e)?0xa0:0xc0,_0x2302e6=this[_0x18538b(0xc2)]===_0x18538b(0x9e)?0x60:0xc0;let _0x27544e={'width':_0x330af6,'height':_0x2302e6};return await this['SmartEyes'][_0x18538b(0xaf)](_0x269ba4,_0x3444cc,_0x3bc799)[_0x18538b(0xa4)](async _0x3cab62=>{const _0x25f503=_0x18538b;if(this[_0x25f503(0xc2)]===_0x25f503(0x9e))_0x37008f[_0x25f503(0xa8)]=_0x3cab62,_0x37008f['width']=_0x27544e[_0x25f503(0xa9)],_0x37008f[_0x25f503(0xb2)]=_0x27544e[_0x25f503(0xb2)];else{_0x132f05=_0x493b76[_0x25f503(0xae)](()=>{const _0xfaeae9=_0x25f503;return refine(_0x3cab62[_0xfaeae9(0xa0)](_0x493b76['scalar'](0xff)),_0x27544e)[_0xfaeae9(0x9d)]([_0x2302e6,_0x330af6,0x1]);});let _0x9b7a0e=await _0x493b76[_0x25f503(0xc3)][_0x25f503(0xb7)](_0x132f05),_0x47ee7d=new ImageData(_0x9b7a0e,_0x330af6,_0x2302e6),_0x574136=await preProcessing(_0x47ee7d,_0x3444cc,{'width':_0x27544e[_0x25f503(0xa9)],'height':_0x27544e[_0x25f503(0xb2)]},ColorSpaceType[_0x25f503(0xa6)],{'width':_0x269ba4[_0x25f503(0xa9)],'height':_0x269ba4[_0x25f503(0xb2)]});_0x37008f['data']=new ImageData(_0x574136,_0x269ba4[_0x25f503(0xa9)],_0x269ba4['height']),_0x37008f[_0x25f503(0xa9)]=_0x269ba4[_0x25f503(0xa9)],_0x37008f[_0x25f503(0xb2)]=_0x269ba4[_0x25f503(0xb2)];}_0x3112ea=!![];})[_0x18538b(0xbf)](_0x3c3527=>{const _0x4d8c31=_0x18538b;console[_0x4d8c31(0xb4)](_0x4d8c31(0xb3)+_0x3c3527);}),_0x3112ea;}}export async function psy_seg_create(_0x417e29){return new PsySeg(_0x417e29,'tflite');}export async function psy_seg_create_internal(_0x2bcdf9,_0x344be2=_0x5efd8f(0x9e)){return new PsySeg(_0x2bcdf9,_0x344be2);}export async function psy_seg_destroy(_0x153c88){const _0x5af37a=_0x5efd8f;_0x153c88['backend']!==_0x5af37a(0x9e)&&_0x153c88[_0x5af37a(0xc5)]['release'](),delete _0x153c88[_0x5af37a(0xc2)],delete _0x153c88[_0x5af37a(0xa9)],delete _0x153c88['height'],delete _0x153c88[_0x5af37a(0xbb)],delete _0x153c88[_0x5af37a(0xc5)];}export async function psy_seg_create_background(_0x22424a,_0x6f9af4,_0x2e3f03,_0xa75a45){const _0x4dae4e=_0x5efd8f;let _0x2106a2=null;return await preProcessing(_0x22424a,_0x6f9af4,_0x2e3f03,ColorSpaceType()['COLOR_SPACE_RGB'],_0xa75a45)[_0x4dae4e(0xa4)](_0xad3f11=>{_0x2106a2=_0xad3f11;})[_0x4dae4e(0xbf)](_0x58d0e7=>{const _0x3f556d=_0x4dae4e;console[_0x3f556d(0xb4)](_0x3f556d(0xbc)+_0x58d0e7);}),PsySegBuf(_0xa75a45[_0x4dae4e(0xa9)],_0xa75a45[_0x4dae4e(0xb2)],0x4,_0x2106a2);}export async function psy_seg_get_alpha(_0x2977f7,_0x5f2648,_0x3c25ae,_0x626d15){const _0x5293cb=_0x5efd8f;let _0x460442=![];_0x493b76[_0x5293cb(0xac)]()[_0x5293cb(0xa5)]();_0x2977f7[_0x5293cb(0xc5)][_0x5293cb(0x99)]!==null&&await psy_seg_get_alpha_internal(_0x2977f7,_0x5f2648,_0x3c25ae,_0x626d15,!![])[_0x5293cb(0xa4)](_0x37d1b3=>{_0x460442=_0x37d1b3;})[_0x5293cb(0xbf)](_0x5d346f=>{const _0x39c784=_0x5293cb;console[_0x39c784(0xb4)](_0x39c784(0x9a)+_0x5d346f);});if(_0x2977f7['backend']===_0x5293cb(0x9e)){let _0x102f0f=await preProcessing(_0x626d15[_0x5293cb(0xa8)],_0x3c25ae,{'width':_0x626d15['width'],'height':_0x626d15['height']},ColorSpaceType[_0x5293cb(0xa6)],{'width':_0x5f2648['width'],'height':_0x5f2648[_0x5293cb(0xb2)]});_0x626d15[_0x5293cb(0xa8)]=new ImageData(_0x102f0f,_0x5f2648[_0x5293cb(0xa9)],_0x5f2648[_0x5293cb(0xb2)]),_0x626d15[_0x5293cb(0xa9)]=_0x5f2648[_0x5293cb(0xa9)],_0x626d15['height']=_0x5f2648[_0x5293cb(0xb2)];}return _0x493b76[_0x5293cb(0xac)]()[_0x5293cb(0xa7)](),_0x460442;}export async function psy_seg_overlay_background(_0x4307a0,_0x1d5dcd,_0x4e271e,_0x53ebe2,_0x410a83){const _0x324e1e=_0x5efd8f;let _0x1067d7=![];_0x493b76['engine']()[_0x324e1e(0xa5)]();const _0x350532=_0x4307a0[_0x324e1e(0xc2)]===_0x324e1e(0x9e)?0xa0:0xc0,_0x3ba3f6=_0x4307a0['backend']==='tflite'?0x60:0xc0;let _0x434f04=PsySegBuf(_0x350532,_0x3ba3f6,0x4,null);return _0x4307a0['SmartEyes'][_0x324e1e(0x99)]!==null&&await psy_seg_overlay_background_internal(_0x4307a0,_0x1d5dcd,_0x4e271e,_0x53ebe2,_0x434f04,_0x410a83)[_0x324e1e(0xa4)](_0x303cb3=>{_0x1067d7=_0x303cb3;})[_0x324e1e(0xbf)](_0x3b63c5=>{}),_0x493b76[_0x324e1e(0xac)]()[_0x324e1e(0xa7)](),_0x1067d7;}export async function psy_seg_overlay_background_new(_0x4ef208,_0x5a0c57,_0x29b9c5,_0x4ff1b9,_0x20fea5,_0x3eee34=null){const _0x2445e2=_0x5efd8f;_0x493b76[_0x2445e2(0xac)]()[_0x2445e2(0xa5)]();const _0x1fab53=_0x4ef208[_0x2445e2(0xc2)]==='tflite'?0xa0:0xc0,_0x29a9fd=_0x4ef208[_0x2445e2(0xc2)]===_0x2445e2(0x9e)?0x60:0xc0;let _0xa8ceab=PsySegBuf(_0x1fab53,_0x29a9fd,0x4,null);const _0x1ce47f=await psy_seg_remove_background_with_extra_params(_0x4ef208,_0x5a0c57,_0x4ff1b9,_0x20fea5,_0x3eee34);return _0x4ef208['canvasContext'][_0x2445e2(0xc1)](_0x29b9c5[_0x2445e2(0xa8)],0x0,0x0),_0x4ef208[_0x2445e2(0xa2)][_0x2445e2(0xb6)](0x0,0x0,_0x4ef208[_0x2445e2(0xa9)],_0x4ef208[_0x2445e2(0xb2)]),_0x4ef208[_0x2445e2(0xa2)][_0x2445e2(0xc1)](_0x20fea5[_0x2445e2(0xa8)],0x0,0x0),_0x4ef208[_0x2445e2(0xa1)]['drawImage'](_0x4ef208[_0x2445e2(0xb0)],0x0,0x0),_0x20fea5[_0x2445e2(0xa8)]=_0x4ef208['canvasContext']['getImageData'](0x0,0x0,_0x4ef208[_0x2445e2(0xa9)],_0x4ef208[_0x2445e2(0xb2)]),_0x493b76[_0x2445e2(0xac)]()[_0x2445e2(0xa7)](),_0x1ce47f;}export async function psy_seg_overlay_background_with_extra_params(_0x31accd,_0x50e935,_0x3e783d,_0x4ade4f,_0x85a26c,_0x4f40ed=null){const _0x264330=_0x5efd8f;let _0x90542d=![];_0x493b76['engine']()[_0x264330(0xa5)]();const _0x58be49=_0x31accd[_0x264330(0xc2)]===_0x264330(0x9e)?0xa0:0xc0,_0x344d81=_0x31accd[_0x264330(0xc2)]==='tflite'?0x60:0xc0;let _0x2e676f=PsySegBuf(_0x58be49,_0x344d81,0x4,null);return _0x31accd[_0x264330(0xc5)][_0x264330(0x99)]!==null&&await psy_seg_overlay_background_internal(_0x31accd,_0x50e935,_0x3e783d,_0x4ade4f,_0x2e676f,_0x85a26c,_0x4f40ed)[_0x264330(0xa4)](_0x397b98=>{_0x90542d=_0x397b98;})[_0x264330(0xbf)](_0x3e4142=>{}),_0x493b76[_0x264330(0xac)]()['endScope'](),_0x90542d;}export async function psy_seg_blur_background(_0x476b6f,_0x191bc4,_0x458291,_0x3071b6,_0xa6e811=0x9){const _0x29a5ba=_0x5efd8f;let _0x3b8739=![];_0x493b76['engine']()[_0x29a5ba(0xa5)]();const _0x157c25=_0x476b6f['backend']==='tflite'?0xa0:0xc0,_0x10b548=_0x476b6f[_0x29a5ba(0xc2)]===_0x29a5ba(0x9e)?0x60:0xc0;let _0x39c0e8=PsySegBuf(_0x157c25,_0x10b548,0x4,null);return _0x476b6f['SmartEyes'][_0x29a5ba(0x99)]!==null&&await psy_seg_blur_background_internal(_0x476b6f,_0x191bc4,_0x458291,_0x39c0e8,_0x3071b6,_0xa6e811)[_0x29a5ba(0xa4)](_0x3f9fcf=>{_0x3b8739=_0x3f9fcf;})[_0x29a5ba(0xbf)](_0x51039f=>{}),_0x493b76[_0x29a5ba(0xac)]()[_0x29a5ba(0xa7)](),_0x3b8739;}export async function psy_seg_blur_background_with_extra_params(_0x31b0e5,_0x3916be,_0xa8206f,_0x4fc559,_0x1f2731,_0xc83bd9=null){const _0x160a71=_0x5efd8f;let _0x4cdf97=![];_0x493b76[_0x160a71(0xac)]()['startScope']();const _0x254ab6=_0x31b0e5[_0x160a71(0xc2)]===_0x160a71(0x9e)?0xa0:0xc0,_0x675dfe=_0x31b0e5['backend']===_0x160a71(0x9e)?0x60:0xc0;let _0x12dad2=PsySegBuf(_0x254ab6,_0x675dfe,0x4,null);return _0x31b0e5[_0x160a71(0xc5)][_0x160a71(0x99)]!==null&&await psy_seg_blur_background_internal(_0x31b0e5,_0x3916be,_0xa8206f,_0x12dad2,_0x4fc559,_0x1f2731,_0xc83bd9)[_0x160a71(0xa4)](_0xf5cac7=>{_0x4cdf97=_0xf5cac7;})['catch'](_0x1c1a57=>{}),_0x493b76['engine']()[_0x160a71(0xa7)](),_0x4cdf97;}export async function psy_seg_remove_background(_0x4fe201,_0x5f0f11,_0x211d4a,_0x58a11e){const _0x50cd04=_0x5efd8f;if(!_0x4fe201[_0x50cd04(0xc5)]['model'])return;_0x493b76[_0x50cd04(0xac)]()[_0x50cd04(0xa5)]();const _0x2e81ff=_0x4fe201['backend']==='tflite'?0xa0:0xc0,_0x117289=_0x4fe201[_0x50cd04(0xc2)]===_0x50cd04(0x9e)?0x60:0xc0;let _0x573f01=PsySegBuf(_0x2e81ff,_0x117289,0x4,null);const _0x1d9f11=await psy_seg_remove_background_internal(_0x4fe201,_0x5f0f11,_0x211d4a,_0x573f01,_0x58a11e);return _0x493b76[_0x50cd04(0xac)]()[_0x50cd04(0xa7)](),_0x1d9f11;}export async function psy_seg_remove_background_with_extra_params(_0xc98dd7,_0x5526b2,_0x768d8b,_0x4e776a,_0x52f3e8=null){const _0x476ba7=_0x5efd8f;if(!_0xc98dd7[_0x476ba7(0xc5)]['model'])return;_0x493b76[_0x476ba7(0xac)]()[_0x476ba7(0xa5)]();const _0x209e4d=_0xc98dd7[_0x476ba7(0xc2)]===_0x476ba7(0x9e)?0xa0:0xc0,_0x14ba70=_0xc98dd7[_0x476ba7(0xc2)]===_0x476ba7(0x9e)?0x60:0xc0;let _0x148e5a=PsySegBuf(_0x209e4d,_0x14ba70,0x4,null);const _0x3ef747=await psy_seg_remove_background_internal(_0xc98dd7,_0x5526b2,_0x768d8b,_0x148e5a,_0x4e776a,_0x52f3e8);return _0x493b76[_0x476ba7(0xac)]()['endScope'](),_0x3ef747;}export const getVersion=()=>{const _0x341f53=_0x5efd8f;return _0x341f53(0xbe);};
+// Tensorflow JS library
+import * as tf from '@tensorflow/tfjs';
+
+// Dependent functions
+import { SmartEyes } from "./ML/ML.js";
+import { preProcessing } from "./Preprocessing/Preprocessing.js";
+import {
+	psy_seg_overlay_background_internal,
+	psy_seg_blur_background_internal,
+	psy_seg_remove_background_internal
+} from "./Effects/Effects.js";
+import { psy_seg_get_alpha_internal } from './Effects/Common.js';
+import { refine } from './Refinement/Refinement.js';
+
+//! Strict mode
+"use strict";
+
+/** Colorspace enumerators
+ * 
+ * @usage : define colorspace of input frame to automatically convert
+ *          to RGBA colorspace because our library only work for RGBA
+ *          colorspace. 
+ * @notice : this is for further development because till now our 
+ *           library only support RGB colorspace
+ * 
+ */
+export function ColorSpaceType() {
+	return {
+		'COLOR_SPACE_RGBA': 0,
+		'COLOR_SPACE_BGR': 1,
+		'COLOR_SPACE_RGB': 2,
+		'COLOR_SPACE_NV21': 3,
+		'COLOR_SPACE_NV12': 4,
+		'COLOR_SPACE_I420': 5,
+		'COLOR_SPACE_YUY2': 6
+	}
+};
+
+/** PsySeg setup information
+ * 
+ * @usage : define setup information for PsySeg object including size
+ *          of input / output frame in pixels
+ * 
+ * @notice : our library keeps same size for input and output frames.
+ *           Therefore, please scaling input frame to appropriate size 
+ *           which is able to resize to another dimension to avoid
+ *           re-defining setup information many times.
+ *
+ * @example : your conference will contains many people and size of
+ *            displayed input depends on number of people inside 
+ *            conference. Because our segmentation library depends on 
+ *            setup information and is unchanged until the end, so
+ *            when size of input frame change, we must change setup                 
+ *            information and this is not reasonable. We suggest 
+ *            providing appropriate size in setup information which is
+ *            calculated on average of min - max display input size of 
+ *            your conference application. Taking an example, your 
+ *            input frame will display in size of 1080 x 720 when
+ *            conference has only 2 people, but this size will be 
+ *            reduced to 320 x 240 if increasing to 10 people. Instead  
+ *            of re-defining setup information 2 times 1080 x 720 to
+ *            320 x 240, we suggest defining only 1 time with size
+ *            640 x 480. It means that if input is in size 1080 x 720 
+ *            or 320 x 240, we must resize it to size of 640 x 480 
+ *            before giving to PsySeg library and after processing, we 
+ *            continuously resize it from 640 x 480 to 1080 x 720 or 
+ *            320 x 240. It takes 2 times for scaling input / output 
+ *            but we don't change setup information of PsySeg library 
+ *            which will take more processing time.
+ * 
+ * @arguments
+ * @param width: width of input frame in pixels (type: Number)
+ * @param height: height of input frame in pixels (type: Number)
+ *  
+ * @returns setup information object {"width": ... , "height": ...}
+ * 
+ */
+export function PsySegSetupInfo(width, height) {
+	return {
+		//! Physical height of the image in pixel. it is not the size of the data buffer
+		'colorWidth': width,
+
+		//! Physical width of the image in pixel, It is not the size of the data buffer
+		'colorHeight': height
+	}
+};
+
+/** PsySeg Extra Parameters
+ * 
+ * @usage : advanced configuration for customer
+ * 
+ * @arguments
+ * @param blurEdge: blur level for edge smoothing
+ * 
+ */ 
+export function PsySegExtraParams(erode = 1) {
+	return {	
+		//! blur level for refinements
+		'erode': erode
+	}
+}
+
+/** PsySeg Buffer
+ * 
+ * @usage : buffer contains information (size / channels) and image
+ *          data of input / intermediate output / final output. Our
+ *          library will work only on PsySeg buffer.
+ * 
+ * @notice : at the beginning, you should create some PsySeg buffer
+ *           for your application to communicate with our library. It 
+ *           includes: input buffer, final output buffer, alpha mask 
+ *           buffer (optional), background buffer (optional).
+ * 
+ * @arguments
+ * @param width: width of input frame in pixels (type: Number)
+ * @param height: height of input frame in pixels (type: Number)
+ * @param channels: number of channels of input (ex: colorspace of 
+ *                  input is RGBA => it has 4 channels) (type: Number)
+ * @param data: image data (type: ImageData)
+ *  
+ * @returns PsySeg buffer object {"width": ..., "height": ...,  
+ *          "channels": ..., "data": ...}
+ * 
+ */
+export function PsySegBuf(width, height, channels, data) {
+
+	return {
+		//! Physical width of the image in pixel, It is not the size of the data buffer
+		'width': width,
+
+		//! Physical height of the image in pixel, It is not the size of the data buffer
+		'height': height,
+
+		//! Number of channels
+		'channels': channels,
+
+		//! Holding image data (type: ImageData)
+		'data': data
+	}
+};
+
+/** PsySeg Objects
+ * 
+ * @param Usage: management and execution object contains attributes 
+ *               and methods for getting alpha mask based on DNN model 
+ * 
+ * @param Notice: PsySeg object is core of library which is responsible
+ *                for executing DNN model to extract user from background
+ * 
+ * @Constructor
+ * @param pSetupInfo: + type: PsySegSetupInfo
+ *                    + usage: provide setup information
+ * @param backend: + type: String
+ *                 + link: type of model backend. Currently, 3 types are
+ *                 supported: "tflite" (default), "gpu", "wasm" 
+ * 
+ * @Attributes
+ * @param width: width of input frame in pixels
+ * @param height: height of input frame in pixels
+ * @param SmartEyes: ML instance for executing DNN model
+ * @param backend: type of model
+ *
+ * @Methods
+ * @function runUE
+ *       1. Usage: extracting user from background based on DNN model
+ *       2. Arguments:
+ *          a. inputBuf (type: PsySegBuf): input buffer data
+ *          b. outputBuf (type: PsySegBuf): output buffer data
+ *       3. Return: true => successful segmentation
+ *                  false => failed segmentation
+ * 
+ */
+class PsySeg {
+
+	//! Constructor
+	constructor(pSetupInfo, backend) {
+
+		//! Size of input / output
+		this.width = pSetupInfo.colorWidth;
+		this.height = pSetupInfo.colorHeight;
+
+		//! Set backend
+		this.backend = backend;
+
+		//! Fake canvas
+		this.canvas = document.createElement("canvas");
+		this.canvas.width = this.width;
+		this.canvas.height = this.height;
+		this.canvasContext = this.canvas.getContext('2d');
+    
+		//! Foreground canvas
+		this.fgCanvas = document.createElement("canvas");
+		this.fgCanvas.width = this.width;
+		this.fgCanvas.height = this.height;
+		this.fgCanvasContext = this.fgCanvas.getContext('2d');
+
+		//! SmartEyes for ML implementation
+		this.SmartEyes = null;
+		this.SmartEyes = new SmartEyes(this.backend);
+
+		//! Bind methods
+		this.runUE = this.runUE.bind(this);
+
+	}
+
+	//! User Extraction
+	async runUE(inputBuf, outputBuf, colorSpace, isRemoveBG = false) {
+
+		//! User Extraction status
+		let status = false;
+		let dnnMask = null;
+
+		//! Set default status
+		status = false;
+
+		//! Get size of model
+		const segWidth = this.backend === 'tflite' ? 160 : 192
+		const segHeight = this.backend === 'tflite' ? 96 : 192
+    	let modelSize = {'width': segWidth, 'height': segHeight};
+
+		//! Running UE
+		await this.SmartEyes.run(inputBuf, colorSpace, isRemoveBG)
+		.then(async (output) => {
+
+			//! Check type of backend
+			if (this.backend === "tflite") {
+
+				//! Case 1: only assign mask data for output buffer with "tflite" backend
+				outputBuf.data = output;
+				outputBuf.width = modelSize.width;
+				outputBuf.height = modelSize.height;
+
+			} else {
+
+				//! Case 2: refining state for tfjs backend & convert dnn mask to image data
+				dnnMask = tf.tidy(() => { return refine(output.div(tf.scalar(255.0)), modelSize).reshape([segHeight, segWidth, 1]); });
+				let maskData = await tf.browser.toPixels(dnnMask);
+				let maskImageData = new ImageData(maskData, segWidth, segHeight);
+
+				//! Resize alpha mask to input's size
+				let finalMask = await preProcessing(
+					maskImageData,
+					colorSpace,
+					{'width': modelSize.width, 'height': modelSize.height},
+					ColorSpaceType.COLOR_SPACE_RGBA,
+					{'width': inputBuf.width, 'height': inputBuf.height}
+				)
+
+				//! Assign mask data for output buffer
+				outputBuf.data = new ImageData(finalMask, inputBuf.width, inputBuf.height);
+				outputBuf.width = inputBuf.width;
+				outputBuf.height = inputBuf.height;
+
+			}
+			
+      //! Succesful status
+			status = true;
+		})
+		.catch((e) => { console.log("Cannot get alpha mask due to " + e); });
+
+		//! Return status
+		return status;
+	}
+}
+
+/** PsySeg instance creation for customer
+ * 
+ * @usage : create PsySeg instance for managing buffer data and 
+ *          executing segmentation process.
+ * 
+ * @notice : whenever this API is called, new PsySeg instance will be 
+ *           created and this initial step will take more time
+ *           (loading model, create internal buffer ...). Also, 
+ *           ensuring that old instance is removed by psy_seg_destroy   
+ *           function to avoid memory leaks.
+ * 
+ * @arguments
+ * @param pSetupInfo: + type: PsySegSetupInfo
+ *                    + usage: provide setup information
+ *  
+ * @returns PsySeg instance (internal object)
+ * 
+ */
+export async function psy_seg_create(pSetupInfo) {
+
+	//! Return PsySeg objects
+	return new PsySeg(pSetupInfo, "tflite");
+}
+
+/** PsySeg instance creation for internal test
+ * 
+ * @usage : create PsySeg instance for managing buffer data and 
+ *          executing segmentation process.
+ * 
+ * @notice : whenever this API is called, new PsySeg instance will be 
+ *           created and this initial step will take more time
+ *           (loading model, create internal buffer ...). Also, 
+ *           ensuring that old instance is removed by psy_seg_destroy   
+ *           function to avoid memory leaks.
+ * 
+ * @arguments
+ * @param pSetupInfo: + type: PsySegSetupInfo
+ *                    + usage: provide setup information
+ * @param backend: + type: String
+ *                 + link: type of model backend. Currently, 3 types are
+ *                         supported: "tflite" (default - best performance), 
+ *                         "gpu", "wasm" 
+ *  
+ * @returns PsySeg instance (internal object)
+ * 
+ */
+export async function psy_seg_create_internal(pSetupInfo, backend = 'tflite') {
+
+	//! Return PsySeg objects
+	return new PsySeg(pSetupInfo, backend);
+}
+
+/** PsySeg instance destroy
+ * 
+ * @usage : destroying all related tensor and data buffer inside 
+ *          PsySeg instance to avoid memory leaks.
+ * 
+ * @notice : there still has few garbage memories due to this function
+ *           is in development phase and it is not completed to 
+ *           destroy all unused memory.
+ * 
+ * @arguments
+ * @param pPsySeg: + type: PsySeg
+ *                 + usage: instance is necessary to be destroyed
+ *  
+ * @returns none
+ * 
+ */
+export async function psy_seg_destroy(pPsySeg) {
+
+	//! Dispose model except "tflite" (automatically destroyed)
+	if (pPsySeg.backend !== "tflite") {
+		pPsySeg.SmartEyes.release();
+	}
+	
+	//! Delete all method + buffer
+	delete pPsySeg.backend;
+	delete pPsySeg.width;
+	delete pPsySeg.height;
+	delete pPsySeg.runUE;
+	delete pPsySeg.SmartEyes;
+}
+
+/** PsySeg create background image
+ * 
+ * @usage : pre-processing background image data to reach desired size 
+ *          & RGBA colorspace
+ *
+ * @notice : this function is only necessary for overlay background
+ *           effect. Different with input frame, background image
+ *           will be re-used frame-by-frame, so it is only necessary
+ *           to be converted 1 time at the beginning (or when you
+ *           change background) while input frame will be converted
+ *           automatically frame-by-frame inside processing function
+ * 
+ * @arguments
+ * @param bgData: + type: ImageData
+ *                + usage: background image with type ImageData
+ * @param colorSpace: + type: ColorSpaceType
+ *                    + usage: describing the colorspace of background
+ *                             image which is used to convert to RGBA   
+ *                             colorspace
+ * @param bgSize: + type: Object
+ *                + usage: describing a 2D size (width, height) of 
+ *                         input background image
+ * @param dstSize: + type: Object
+ *                 + usage: describing a 2D size (width, height) of 
+ *                          output background image (same as 
+ *                          output size in setup information)
+ * 
+ ** @return PsySegBuf buffer contains background image information & data
+ *
+ */
+export async function psy_seg_create_background(bgData, colorSpace, bgSize, dstSize) {
+	 
+	//! Default background frame
+	let processedBG = null;
+
+	//! Pre-processing background buffer
+	await preProcessing(
+		bgData,
+		colorSpace,
+		bgSize,
+		ColorSpaceType().COLOR_SPACE_RGB,
+		dstSize
+	)
+	.then((outputData) => { processedBG = outputData; })
+	.catch((e) => { console.log("Cannot create background due to " + e) });
+
+	//! Return PsySeg buffer
+	return PsySegBuf(dstSize.width, dstSize.height, 4, processedBG);
+}
+
+/** Get the alpha mask of the user
+ * 
+ * @usage : extracting user from background and providing alpha mask
+ *          for further development
+ *
+ * @notice : this function is usually used as intermediate step and
+ *           need to be combined with effect or beauty step later.
+ *           It is used for development phase or advanced usage by
+ *           users.
+ * 
+ * @arguments
+ * @param pPsySeg: + type: PsySeg
+ *                 + usage: management and execution instance
+ * @param pInColor: + type: PsySegBuf (data = "ImageData")
+ *                  + usage: input buffer data
+ * @param colorSpace: + type: ColorSpaceType
+ *                    + usage: describing the colorspace of background
+ *                             image which is used to convert to RGBA   
+ *                             colorspace
+ * @param pOutAlpha: + type: PsySegBuf (data = "ImageData")
+ *                   + usage: alpha mask buffer contains background &
+ *                            foreground information
+ * 
+ ** @return true on success, false otherwise
+ *
+ */
+export async function psy_seg_get_alpha(pPsySeg, pInColor, colorSpace, pOutAlpha) {
+
+	//! Get alpha mask status
+	let status = false;
+
+	//! Start tf container
+	tf.engine().startScope();
+
+	//! Run alpha mask
+	if (pPsySeg.SmartEyes.model !== null) {
+		await psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, true)
+		.then((out) => { status = out; })
+		.catch((e) => { console.log("Cannot get alpha effects due to " + e); });
+	}
+
+	//! Post-processing (only resizing)
+	if (pPsySeg.backend === "tflite") {
+
+		//! Resize alpha mask to input's size
+		let finalMask = await preProcessing(
+			pOutAlpha.data,
+			colorSpace,
+			{'width': pOutAlpha.width, 'height': pOutAlpha.height},
+			ColorSpaceType.COLOR_SPACE_RGBA,
+			{'width': pInColor.width, 'height': pInColor.height}
+		)
+
+		//! Set value for alpha mask after resizing
+		pOutAlpha.data = new ImageData(finalMask, pInColor.width, pInColor.height);
+		pOutAlpha.width = pInColor.width;
+		pOutAlpha.height = pInColor.height;
+
+	}
+
+	//! End tf container
+	tf.engine().endScope();
+
+	// Return status
+	return status;
+}
+
+/** Overlaying background effect
+ * 
+ * @usage : extracting user from background and overlaying it with
+ *          desired ones.
+ *
+ * @notice : this function has one special parameter is pInBackground.
+ *           This parameter is an output of psy_seg_create_background,
+ *           so before calling this function, a background input must
+ *           be converted to right template via the above function.
+ * 
+ * @arguments
+ * @param pPsySeg: + type: PsySeg
+ *                 + usage: management and execution instance
+ * @param pInColor: + type: PsySegBuf (data = "ImageData")
+ *                  + usage: input buffer data
+ * @param pInBackground: + type: PsySegBuf (data = "ImageData")
+ *                       + usage: background buffer data with "specific 
+ *                        size" based on type of backend
+ * @param colorSpace: + type: ColorSpaceType
+ *                    + usage: describing the colorspace of background
+ *                             image which is used to convert to RGBA   
+ *                             colorspace
+ * @param pOutColor: + type: PsySegBuf (data = "ImageData")
+ *                   + usage: overlayed background output frame with
+ *                            same size & colorspace with input frame.
+ * 
+ ** @return true on success, false otherwise
+ *
+ */
+export async function psy_seg_overlay_background(pPsySeg, pInColor, pInBackground, colorSpace, pOutColor) {
+
+	//! Overlay BG status
+	let status = false;
+
+	//! Start tf container
+	tf.engine().startScope();
+
+	//! Default alpha buffer
+	//! Resizing input frame to model size
+	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192
+	const segHeight = pPsySeg.backend === 'tflite' ? 96 : 192
+	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
+
+	//! Overlay Background
+	if (pPsySeg.SmartEyes.model !== null) {
+		await psy_seg_overlay_background_internal(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor)
+		.then((out) => { status = out })
+		.catch((e) => {});
+	}
+
+	// End tf container
+	tf.engine().endScope();
+
+	// Return status
+	return status;
+}
+
+/** Overlaying background effect
+ * 
+ * @usage : extracting user from background and overlaying it with
+ *          desired ones.
+ *
+ * @notice : this function has one special parameter is pInBackground.
+ *           This parameter is an output of psy_seg_create_background,
+ *           so before calling this function, a background input must
+ *           be converted to right template via the above function.
+ * 
+ * @arguments
+ * @param pPsySeg: + type: PsySeg
+ *                 + usage: management and execution instance
+ * @param pInColor: + type: PsySegBuf (data = "ImageData")
+ *                  + usage: input buffer data
+ * @param pInBackground: + type: PsySegBuf (data = "ImageData")
+ *                       + usage: background buffer data with "specific 
+ *                        size" based on type of backend
+ * @param colorSpace: + type: ColorSpaceType
+ *                    + usage: describing the colorspace of background
+ *                             image which is used to convert to RGBA   
+ *                             colorspace
+ * @param pOutColor: + type: PsySegBuf (data = "ImageData")
+ *                   + usage: overlayed background output frame with
+ *                            same size & colorspace with input frame.
+ * 
+ ** @return true on success, false otherwise
+ *
+ */
+export async function psy_seg_overlay_background_new(pPsySeg, pInColor, pInBackground, colorSpace, pOutColor, pPsySegExtraParams = null) {
+
+	//! Start tf container
+	tf.engine().startScope();
+
+	//! Default alpha buffer
+	//! Resizing input frame to model size
+	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192
+	const segHeight = pPsySeg.backend === 'tflite' ? 96 : 192
+	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
+
+	//! Remove background
+	const status = await psy_seg_remove_background_with_extra_params(pPsySeg, pInColor, colorSpace, pOutColor, pPsySegExtraParams);
+
+	//! Plot background canvas
+	pPsySeg.canvasContext.putImageData(pInBackground.data, 0, 0);
+	pPsySeg.fgCanvasContext.clearRect(0, 0, pPsySeg.width, pPsySeg.height);
+	pPsySeg.fgCanvasContext.putImageData(pOutColor.data, 0, 0);
+	pPsySeg.canvasContext.drawImage(pPsySeg.fgCanvas, 0, 0);
+
+	//! Get output data
+	pOutColor.data = pPsySeg.canvasContext.getImageData(0, 0, pPsySeg.width, pPsySeg.height);
+
+	// End tf container
+	tf.engine().endScope();
+
+	// Return status
+	return status;
+}
+
+/** Overlaying background effect with extra parameters
+ * 
+ * @usage : extracting user from background and overlaying it with
+ *          desired ones with advanced configuration.
+ *
+ * @notice : this function has one special parameter is pInBackground.
+ *           This parameter is an output of psy_seg_create_background,
+ *           so before calling this function, a background input must
+ *           be converted to right template via the above function.
+ * 
+ * @arguments
+ * @param pPsySeg: + type: PsySeg
+ *                 + usage: management and execution instance
+ * @param pInColor: + type: PsySegBuf (data = "ImageData")
+ *                  + usage: input buffer data
+ * @param pInBackground: + type: PsySegBuf (data = "ImageData")
+ *                       + usage: background buffer data with "specific 
+ *                        size" based on type of backend
+ * @param colorSpace: + type: ColorSpaceType
+ *                    + usage: describing the colorspace of background
+ *                             image which is used to convert to RGBA   
+ *                             colorspace
+ * @param pOutColor: + type: PsySegBuf (data = "ImageData")
+ *                   + usage: overlayed background output frame with
+ *                            same size & colorspace with input frame.
+ * @param pPsySegExtraParams: + type: PsySegExtraParams
+ *                            + usage: struct data for parameters
+ * 
+ ** @return true on success, false otherwise
+ *
+ */
+export async function psy_seg_overlay_background_with_extra_params(pPsySeg, pInColor, pInBackground, colorSpace, pOutColor, pPsySegExtraParams = null) {
+
+	//! Overlay BG status
+	let status = false;
+
+	//! Start tf container
+	tf.engine().startScope();
+
+	//! Default alpha buffer
+	//! Resizing input frame to model size
+	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192;
+	const segHeight = pPsySeg.backend === 'tflite' ? 96 : 192;
+	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
+
+	//! Overlay Background
+	if (pPsySeg.SmartEyes.model !== null) {
+		await psy_seg_overlay_background_internal(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)
+		.then((out) => { status = out })
+		.catch((e) => {});
+	}
+
+	// End tf container
+	tf.engine().endScope();
+
+	// Return status
+	return status;
+}
+
+/** Blurring background effect
+ * 
+ * @usage : extracting user from background and making a background
+ *          blurred to hidden unnecessary object.
+ * 
+ * @arguments
+ * @param pPsySeg: + type: PsySeg
+ *                 + usage: management and execution instance
+ * @param pInColor: + type: PsySegBuf (data = "ImageData")
+ *                  + usage: input buffer data
+ * @param colorSpace: + type: ColorSpaceType
+ *                    + usage: describing the colorspace of background
+ *                             image which is used to convert to RGBA   
+ *                             colorspace
+ * @param pOutColor: + type: PsySegBuf (data = "ImageData")
+ *                   + usage: blurred background output frame with
+ *                            same size & colorspace with input frame.
+ * @param blurSize: + type: Number (odd = 3,5,7,... / default = 13)
+ *                  + usage: blurred level
+ * 
+ ** @return true on success, false otherwise
+ *
+ */
+export async function psy_seg_blur_background(pPsySeg, pInColor, colorSpace, pOutColor, blurSize = 9) {
+
+	//! Overlay BG status
+	let status = false;
+
+	//! Start tf container
+	tf.engine().startScope();
+
+	//! Default alpha buffer
+	//! Resizing input frame to model size
+	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192;
+	const segHeight = pPsySeg.backend === 'tflite' ? 96 : 192;
+	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
+
+	//! Overlay Background
+	if (pPsySeg.SmartEyes.model !== null) {
+		await psy_seg_blur_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize)
+		.then((out) => { status = out; })
+		.catch((e) => {});
+	}
+
+	// End tf container
+	tf.engine().endScope();
+
+	// Return status
+	return status;
+}
+
+/** Blurring background effect with extra parameters
+ * 
+ * @usage : extracting user from background and making a background
+ *          blurred to hidden unnecessary object with advanced configuration.
+ * 
+ * @arguments
+ * @param pPsySeg: + type: PsySeg
+ *                 + usage: management and execution instance
+ * @param pInColor: + type: PsySegBuf (data = "ImageData")
+ *                  + usage: input buffer data
+ * @param colorSpace: + type: ColorSpaceType
+ *                    + usage: describing the colorspace of background
+ *                             image which is used to convert to RGBA   
+ *                             colorspace
+ * @param pOutColor: + type: PsySegBuf (data = "ImageData")
+ *                   + usage: blurred background output frame with
+ *                            same size & colorspace with input frame.
+ * @param blurSize: + type: Number (odd = 3,5,7,... / default = 13)
+ *                  + usage: blurred level
+ * @param pPsySegExtraParams: + type: PsySegExtraParams
+ *                            + usage: struct data for parameters
+ * 
+ ** @return true on success, false otherwise
+ *
+ */
+export async function psy_seg_blur_background_with_extra_params(pPsySeg, pInColor, colorSpace, pOutColor, blurSize, pPsySegExtraParams = null) {
+
+	//! Overlay BG status
+	let status = false;
+
+	//! Start tf container
+	tf.engine().startScope();
+
+	//! Default alpha buffer
+	//! Resizing input frame to model size
+	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192;
+	const segHeight = pPsySeg.backend === 'tflite' ? 96 : 192;
+	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
+
+	//! Overlay Background
+	if (pPsySeg.SmartEyes.model !== null) {
+		await psy_seg_blur_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySegExtraParams)
+		.then((out) => { status = out; })
+		.catch((e) => {});
+	}
+
+	// End tf container
+	tf.engine().endScope();
+
+	// Return status
+	return status;
+}
+
+/** Remove background effect
+ * 
+ * @usage : extracting only user from background
+ * 
+ * @arguments
+ * @param pPsySeg: + type: PsySeg
+ *                 + usage: management and execution instance
+ * @param pInColor: + type: PsySegBuf (data = "ImageData")
+ *                  + usage: input buffer data
+ * @param colorSpace: + type: ColorSpaceType
+ *                    + usage: describing the colorspace of background
+ *                             image which is used to convert to RGBA   
+ *                             colorspace
+ * @param pOutColor: + type: PsySegBuf (data = "ImageData")
+ *                   + usage: blurred background output frame with
+ *                            same size & colorspace with input frame.
+ * 
+ ** @return true on success, false otherwise
+ *
+ */
+export async function psy_seg_remove_background(pPsySeg, pInColor, colorSpace, pOutColor) {
+	if (!pPsySeg.SmartEyes.model) return
+
+	//! Start tf container
+	tf.engine().startScope();
+
+	//! Default alpha buffer
+	//! Resizing input frame to model size
+	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192;
+	const segHeight = pPsySeg.backend === 'tflite' ? 96 : 192;
+	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
+
+	//! Remove background
+	const status = await psy_seg_remove_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor);
+
+	// End tf container
+	tf.engine().endScope();
+
+	// Return status
+	return status
+}
+
+/** Remove background effect with extra parameters
+ * 
+ * @usage : extracting only user from background
+ * 
+ * @arguments
+ * @param pPsySeg: + type: PsySeg
+ *                 + usage: management and execution instance
+ * @param pInColor: + type: PsySegBuf (data = "ImageData")
+ *                  + usage: input buffer data
+ * @param colorSpace: + type: ColorSpaceType
+ *                    + usage: describing the colorspace of background
+ *                             image which is used to convert to RGBA   
+ *                             colorspace
+ * @param pOutColor: + type: PsySegBuf (data = "ImageData")
+ *                   + usage: blurred background output frame with
+ *                            same size & colorspace with input frame.
+ * @param pPsySegExtraParams: + type: PsySegExtraParams
+ *                            + usage: struct data for parameters
+ * 
+ ** @return true on success, false otherwise
+ *
+ */
+export async function psy_seg_remove_background_with_extra_params(pPsySeg, pInColor, colorSpace, pOutColor, pPsySegExtraParams = null) {
+	if (!pPsySeg.SmartEyes.model) return
+
+	//! Start tf container
+	tf.engine().startScope();
+
+	//! Default alpha buffer
+	//! Resizing input frame to model size
+	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192;
+	const segHeight = pPsySeg.backend === 'tflite' ? 96 : 192;
+	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
+
+	//! Remove background
+	const status = await psy_seg_remove_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams);
+
+	// End tf container
+	tf.engine().endScope();
+
+	// Return status
+	return status;
+}
+
+export const getVersion =()=>{
+	return '1.6.0'
+}

@@ -1,1 +1,182 @@
-(function(_0x1f7b98,_0x31ae84){const _0x282cc0=_0x5ac3,_0x1dee7e=_0x1f7b98();while(!![]){try{const _0x1dee1b=-parseInt(_0x282cc0(0x137))/0x1+-parseInt(_0x282cc0(0x13a))/0x2+-parseInt(_0x282cc0(0x133))/0x3*(-parseInt(_0x282cc0(0x128))/0x4)+parseInt(_0x282cc0(0x12a))/0x5+parseInt(_0x282cc0(0x139))/0x6*(-parseInt(_0x282cc0(0x129))/0x7)+parseInt(_0x282cc0(0x126))/0x8+parseInt(_0x282cc0(0x12f))/0x9;if(_0x1dee1b===_0x31ae84)break;else _0x1dee7e['push'](_0x1dee7e['shift']());}catch(_0x7a97e2){_0x1dee7e['push'](_0x1dee7e['shift']());}}}(_0x5d72,0xa1ae6));function _0x5ac3(_0xd54ddd,_0x37efbb){const _0x5d7220=_0x5d72();return _0x5ac3=function(_0x5ac3a3,_0x5038a9){_0x5ac3a3=_0x5ac3a3-0x122;let _0x416d20=_0x5d7220[_0x5ac3a3];return _0x416d20;},_0x5ac3(_0xd54ddd,_0x37efbb);}import*as _0x4f7506 from'@tensorflow/tfjs';function _0x5d72(){const _0x9600b6=['Input\x20has\x20a\x20problem,\x20please\x20re-check','height','76619ghTbpb','Cannot\x20get\x20alpha\x20mask\x20at\x20RemoveBackgroundWASM\x20due\x20to\x20','1073604kPLJMI','2310562pbXfVz','tflite','scalar','mul','data','_removeBackgroundLite','length','Cannot\x20get\x20alpha\x20mask\x20at\x20RemoveBackgroundGPU\x20due\x20to\x20','erode','_create_buffer','fromPixels','toPixels','3477600TtXPiw','width','566120ggiBlL','7HTuCmN','1208490EJinNo','log','Cannot\x20get\x20alpha\x20mask\x20without\x20error\x20notification','div','buffer','1106208HMyWDg','HEAP8','browser','_get_buffer_size','27uVdwSZ','_removeBackground'];_0x5d72=function(){return _0x9600b6;};return _0x5d72();}import{psy_seg_get_alpha_internal}from'./Common.js';export async function RemoveBackgroundGPU(_0x182c54,_0x38b125,_0x15cd9d,_0x2a6242,_0x26cb35,_0x1e6468=null){const _0x3ddc81=_0x5ac3;if(!_0x38b125[_0x3ddc81(0x13e)])return console['log'](_0x3ddc81(0x135)),![];try{const _0x8bd175=await psy_seg_get_alpha_internal(_0x182c54,_0x38b125,_0x15cd9d,_0x2a6242);if(!_0x8bd175)return console['log'](_0x3ddc81(0x12c)),![];const _0x1271c9=await _0x4f7506['browser'][_0x3ddc81(0x124)](_0x38b125['data'],0x4)[_0x3ddc81(0x12d)](_0x4f7506[_0x3ddc81(0x13c)](0xff)),_0x188328=await _0x4f7506[_0x3ddc81(0x131)]['fromPixels'](_0x2a6242[_0x3ddc81(0x13e)],0x4)[_0x3ddc81(0x12d)](_0x4f7506[_0x3ddc81(0x13c)](0xff)),_0x1cdd63=_0x1271c9[_0x3ddc81(0x13d)](_0x188328),_0x35ec9c=await _0x4f7506['browser'][_0x3ddc81(0x125)](_0x1cdd63),_0x315bb8=_0x35ec9c[_0x3ddc81(0x140)]/0x4;for(let _0x423c5f=0x0;_0x423c5f<_0x315bb8;_0x423c5f++){const _0x355fe9=_0x35ec9c[_0x423c5f*0x4],_0x19d90e=_0x35ec9c[_0x423c5f*0x4+0x1],_0x5d608d=_0x35ec9c[_0x423c5f*0x4+0x2],_0x4ad299=_0x35ec9c[_0x423c5f*0x4+0x3];_0x4ad299===0xff&&_0x355fe9===0x0&&_0x19d90e===0x0&&_0x5d608d===0x0&&(_0x35ec9c[_0x423c5f*0x4+0x3]=0x0);}_0x26cb35['data']=new ImageData(_0x35ec9c,_0x38b125['width'],_0x38b125[_0x3ddc81(0x136)]);}catch(_0x3a646f){return console[_0x3ddc81(0x12b)](_0x3ddc81(0x141),_0x3a646f),![];}return!![];}export async function RemoveBackgroundWASM(_0x2a20b6,_0xe1c86c,_0x16649c,_0x419212,_0x554fd3,_0x4336c0,_0x4afe5f=null){const _0x3754ed=_0x5ac3;if(!_0xe1c86c[_0x3754ed(0x13e)])return console[_0x3754ed(0x12b)](_0x3754ed(0x135)),![];try{const _0x487b3b=!![],_0xbb9b=await psy_seg_get_alpha_internal(_0x2a20b6,_0xe1c86c,_0x16649c,_0x419212,_0x487b3b);if(!_0xbb9b)return console['log'](_0x3754ed(0x12c)),![];let _0x181288=0x1;_0x4afe5f!==null&&(_0x4afe5f[_0x3754ed(0x122)]>=0x1&&(_0x181288=0x2*_0x4afe5f[_0x3754ed(0x122)]-0x1));const {width:_0x373b7d,height:_0x14a28f}=_0xe1c86c,_0x5cade6=_0xe1c86c['data'][_0x3754ed(0x13e)],_0x419b18=_0x419212[_0x3754ed(0x13e)][_0x3754ed(0x13e)],_0x2a25c0=Module[_0x3754ed(0x132)](_0x373b7d,_0x14a28f),_0x4a4901=Module[_0x3754ed(0x123)](_0x2a25c0),_0x513fc5=Module[_0x3754ed(0x132)](_0x373b7d,_0x14a28f),_0xcdaac9=Module['_create_buffer'](_0x513fc5);Module[_0x3754ed(0x130)]['set'](_0x5cade6,_0x4a4901),Module[_0x3754ed(0x130)]['set'](_0x419b18,_0xcdaac9);_0x4336c0===_0x3754ed(0x13b)?Module[_0x3754ed(0x13f)](_0x4a4901,_0xcdaac9,_0x373b7d,_0x14a28f,_0x419212[_0x3754ed(0x127)],_0x419212[_0x3754ed(0x136)],_0x181288):Module[_0x3754ed(0x134)](_0x4a4901,_0xcdaac9,_0x373b7d,_0x14a28f,_0x419212[_0x3754ed(0x127)],_0x419212['height']);const _0x51cc4c=new Uint8ClampedArray(new Uint8Array(Module['HEAP8'][_0x3754ed(0x12e)],_0x4a4901,_0x2a25c0));_0x554fd3[_0x3754ed(0x13e)]=new ImageData(_0x51cc4c,_0x373b7d,_0x14a28f),Module['_destroy_buffer'](_0x4a4901),Module['_destroy_buffer'](_0xcdaac9);}catch(_0x12f32e){return console[_0x3754ed(0x12b)](_0x3754ed(0x138),_0x12f32e),![];}return!![];}
+//! Dependencies function
+import * as tf from '@tensorflow/tfjs';
+import { psy_seg_get_alpha_internal } from './Common.js'
+
+/**
+ * Getting persona only effect with GPU backend
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutColor The overlay background buffer with same size as input buffer
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pPsySegExtraParams advanced configuration for customer usages
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams = null) {
+  if (!pInColor.data) {
+    console.log('Input has a problem, please re-check');
+    return false;
+  }
+
+  try {
+    //! Getting alpha mask first
+    const alphaStatus = await psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha);
+
+    //! Check returned status
+    if (!alphaStatus) {
+      console.log('Cannot get alpha mask without error notification');
+      return false;
+    }
+  
+    //! Convert to tensor type
+    const fgImg = await tf.browser.fromPixels(pInColor.data, 4).div(tf.scalar(255.0));
+    const mask = await tf.browser.fromPixels(pOutAlpha.data, 4).div(tf.scalar(255.0));
+    const ue = fgImg.mul(mask);
+    
+    // const imageBuffer = await tf.browser.toPixels(tf.tidy(() => {
+    //   const [rgb,] = tf.split(ue, [3, 1], -1)
+    //   const condition = ue.sum(-1).reshape([pInColor.width * pInColor.height]).equal(1)
+    //   const a = tf.scalar(0).where(condition, tf.scalar(1)).reshape([pInColor.width, pInColor.height, 1])
+    //   return tf.concat([rgb, a], -1)
+    // }))
+
+    /* Recommended: this approach make performance better above) */
+    const imageBuffer = await tf.browser.toPixels(ue);
+    const l = imageBuffer.length / 4;
+    for (let i = 0; i < l; i++) {
+      const r = imageBuffer[i * 4];
+      const g = imageBuffer[i * 4 + 1];
+      const b = imageBuffer[i * 4 + 2];
+      const a = imageBuffer[i * 4 + 3];
+      if (a === 255 && r === 0 && g === 0 && b === 0) {
+        imageBuffer[i * 4 + 3] = 0;
+      }
+    }
+    
+    pOutColor.data = new ImageData(imageBuffer, pInColor.width, pInColor.height);
+    
+  } catch (e) {
+    console.log('Cannot get alpha mask at RemoveBackgroundGPU due to ', e);
+    return false;
+  }
+
+  // Return status
+  return true
+}
+
+/**
+ * Getting persona only effect with WASM backend
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutColor The overlay background buffer with same size as input buffer
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pPsySegExtraParams advanced configuration for customer usages
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, type, pPsySegExtraParams = null) {
+  if (!pInColor.data) {
+    console.log('Input has a problem, please re-check');
+    return false;
+  }
+
+  try {
+    //! Getting alpha mask first
+    const isRemoveBG = true;
+    const alphaStatus = await psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, isRemoveBG);
+
+    //! Check returned status
+    if (!alphaStatus) {
+      console.log('Cannot get alpha mask without error notification');
+      return false;
+    }
+
+    //! Get default parameter for erode value
+    let erodeValue = 1;
+    if (pPsySegExtraParams !== null) {
+      if (pPsySegExtraParams.erode >= 1) {
+        erodeValue = 2 * pPsySegExtraParams.erode - 1;
+      }
+    }
+
+    const { width, height } = pInColor;
+
+    /* Resize pOutAlpha to fit pInColor (Recommended: resize by cpp make performance better) */
+    // const alphaData = await tf.browser.toPixels(tf.tidy(() => {
+    //   return tf.image.resizeBilinear(
+    //     tf.browser.fromPixels(pOutAlpha.data, 4).div(tf.scalar(255.0)),
+    //     [height, width]
+    //   )
+    // }))
+    // pOutAlpha.data = new ImageData(alphaData, width, height)
+
+    //! Input frame
+    const input_image = pInColor.data.data;
+    const alpha_image = pOutAlpha.data.data;
+
+    //! Create buffer for input
+    const memorySize = Module._get_buffer_size(width, height);
+    const memory = Module._create_buffer(memorySize);
+
+    //! Create buffer for alpha mask
+    const alphaMemorySize = Module._get_buffer_size(width, height);
+    const alphaMemory = Module._create_buffer(alphaMemorySize);
+
+    //! Assign data for buffer
+    Module.HEAP8.set(input_image, memory);
+    Module.HEAP8.set(alpha_image, alphaMemory);
+
+    //! Check type of model
+    if (type === 'tflite') {
+      Module._removeBackgroundLite(memory, alphaMemory, width, height, pOutAlpha.width, pOutAlpha.height, erodeValue);
+    } else {
+      Module._removeBackground(memory, alphaMemory, width, height, pOutAlpha.width, pOutAlpha.height);
+    }
+
+    //! Convert data array to ImageData
+    const imageBuffer = new Uint8ClampedArray(new Uint8Array(Module.HEAP8.buffer, memory, memorySize));
+    pOutColor.data = new ImageData(imageBuffer, width, height);
+
+    Module._destroy_buffer(memory);
+    Module._destroy_buffer(alphaMemory);
+
+  } catch (e) {
+    console.log('Cannot get alpha mask at RemoveBackgroundWASM due to ', e);
+    return false;
+  }
+
+  // Return status
+  return true;
+}

@@ -1,1 +1,83 @@
-(function(_0x44bb78,_0x8dfdf){const _0x5bd075=_0x55f1,_0x5aa386=_0x44bb78();while(!![]){try{const _0x5ac19c=-parseInt(_0x5bd075(0x7e))/0x1+parseInt(_0x5bd075(0x81))/0x2+parseInt(_0x5bd075(0x87))/0x3+-parseInt(_0x5bd075(0x86))/0x4+parseInt(_0x5bd075(0x7f))/0x5*(-parseInt(_0x5bd075(0x76))/0x6)+-parseInt(_0x5bd075(0x7d))/0x7*(parseInt(_0x5bd075(0x7b))/0x8)+parseInt(_0x5bd075(0x80))/0x9;if(_0x5ac19c===_0x8dfdf)break;else _0x5aa386['push'](_0x5aa386['shift']());}catch(_0x3e0355){_0x5aa386['push'](_0x5aa386['shift']());}}}(_0x2d0e,0x6a930));import*as _0xbc8425 from'@tensorflow/tfjs';function _0x2d0e(){const _0x26cd93=['add','sub','Run\x20User\x20Extraction\x20error\x20with\x20','2273172iqTpnY','2548665QrKppf','catch','1236054nktrmm','mul','log','tidy','Cannot\x20get\x20alpha\x20mask\x20due\x20to\x20','64bruMVa','runUE','174580ZSxLzG','532669JPjeRB','10XWtMbk','4365702sMIOdf','1628790wYjeCj','data'];_0x2d0e=function(){return _0x26cd93;};return _0x2d0e();}export function MergeBlending(_0xdb1440,_0x1f2e02,_0x561722){const _0x69c6c8=_0x55f1;let _0x1c8dbd=_0xbc8425[_0x69c6c8(0x79)](()=>{const _0x360f11=_0x69c6c8,_0x4bfb1b=_0xdb1440[_0x360f11(0x77)](_0x561722),_0xe5648=_0x1f2e02[_0x360f11(0x77)](_0xbc8425['scalar'](0x1)[_0x360f11(0x84)](_0x561722)),_0x8c8d24=_0xbc8425[_0x360f11(0x83)](_0x4bfb1b,_0xe5648);return _0x8c8d24;});return _0x1c8dbd;}function _0x55f1(_0x3b332a,_0x4d1889){const _0x2d0e0e=_0x2d0e();return _0x55f1=function(_0x55f1ef,_0x10159d){_0x55f1ef=_0x55f1ef-0x76;let _0x3d1596=_0x2d0e0e[_0x55f1ef];return _0x3d1596;},_0x55f1(_0x3b332a,_0x4d1889);}export async function psy_seg_get_alpha_internal(_0x5baf16,_0x6220e7,_0x4d1e07,_0x443d64,_0x428232=![]){const _0x5d7def=_0x55f1;let _0x1a4e9c=![];try{_0x6220e7[_0x5d7def(0x82)]!==null&&await _0x5baf16[_0x5d7def(0x7c)](_0x6220e7,_0x443d64,_0x4d1e07,_0x428232)['then'](_0x8492a4=>{_0x1a4e9c=_0x8492a4;})[_0x5d7def(0x88)](_0x4991ba=>{const _0x598d83=_0x5d7def;console[_0x598d83(0x78)](_0x598d83(0x85)+_0x4991ba);});}catch(_0x53c361){console[_0x5d7def(0x78)](_0x5d7def(0x7a)+_0x53c361);}return _0x1a4e9c;}
+// Tensorflow JS library
+import * as tf from '@tensorflow/tfjs';
+
+/**
+ * Blending foreground and background base on mask
+ *
+ * @param fgImg foreground image in range [0..1]
+ *
+ * @param bgImg background image in range [0..1]
+ * 
+ * @param mask alpha mask in range [0..1]
+ * 
+ ** @return output blending image in tensor type
+ *
+ */
+export function MergeBlending(fgImg, bgImg, mask) {
+
+    let blend_out = tf.tidy(() => {
+		const img_crop = fgImg.mul(mask);
+		const bgd_crop = bgImg.mul(tf.scalar(1.0).sub(mask));
+		const result = tf.add(img_crop, bgd_crop);
+		return result;
+    });
+
+    return blend_out;
+}
+
+/**
+ * Get the alpha mask of the user
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutAlpha The alpha mask, value is in range [0, 1].
+ * We expect that the that this to
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param callType The type of alpha mask output
+ * default = false = change to Uint8ClampedArray
+ * true = retain tensor type
+ * 
+ * @param isRemoveBG
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, isRemoveBG = false) {
+
+	//! Get alpha mask status
+	let status = false;
+
+	try {
+		
+		//! Capture the frame from the webcam.
+		if (pInColor.data !== null) {
+
+			//! Running User Extraction
+			await pPsySeg.runUE(pInColor, pOutAlpha, colorSpace, isRemoveBG)
+			.then((UE_status) => { status = UE_status; })
+			.catch((e) => { console.log("Run User Extraction error with " + e); });
+
+		}
+	} catch (e) {
+		
+		//! logging error
+		console.log("Cannot get alpha mask due to " + e);
+	}
+
+	//! Return status
+	return status;
+}

@@ -1,1 +1,285 @@
-const _0xf3f87d=_0x1769;(function(_0x454a67,_0x31f0e9){const _0x59b99e=_0x1769,_0x4b964b=_0x454a67();while(!![]){try{const _0x127f93=-parseInt(_0x59b99e(0x9a))/0x1*(-parseInt(_0x59b99e(0xb2))/0x2)+parseInt(_0x59b99e(0xb3))/0x3*(-parseInt(_0x59b99e(0x78))/0x4)+-parseInt(_0x59b99e(0x7d))/0x5+parseInt(_0x59b99e(0xaf))/0x6*(-parseInt(_0x59b99e(0xbc))/0x7)+-parseInt(_0x59b99e(0xb8))/0x8+parseInt(_0x59b99e(0x83))/0x9+-parseInt(_0x59b99e(0xa9))/0xa*(-parseInt(_0x59b99e(0x88))/0xb);if(_0x127f93===_0x31f0e9)break;else _0x4b964b['push'](_0x4b964b['shift']());}catch(_0x509c56){_0x4b964b['push'](_0x4b964b['shift']());}}}(_0x584c,0xc2493));import*as _0x5b0b3c from'@tensorflow/tfjs';function _0x1769(_0x2d0c2e,_0x3d642e){const _0x584c6b=_0x584c();return _0x1769=function(_0x176995,_0x955f75){_0x176995=_0x176995-0x76;let _0x32c208=_0x584c6b[_0x176995];return _0x32c208;},_0x1769(_0x2d0c2e,_0x3d642e);}function _0x584c(){const _0xd9994d=['greater','data','_getInputWidth','_getOutputWidth','577971DGLkqP','height','tflite_model','_getOutputChannelCount','Create\x20tflite\x20module\x20failed\x20due\x20to\x20','8855PfAhRz','log','segWidth','Model\x20buffer\x20memory\x20offset:','Output\x20height:','run','Cannot\x20get\x20alpha\x20mask\x20due\x20to\x20DNN\x20issue\x20','loadGraphModel','expandDims','modeling\x20model','tfjs','release','Loading\x20model\x20error\x20due\x20to\x20','exp','then','_getInputChannelCount','width','runTFLiteInference','2074OhAfSD','_runInference','Input\x20channels:','Input\x20height:','startTime','fromPixels','argMax','default','dispose','cors','cast','type','backend','model','_getModelBufferMemoryOffset','29320SYLHtA','Output\x20width:','bind','setBackend','Cannot\x20get\x20inference\x20due\x20to\x20','runTFJSInference','4254ioheQg','getBackend','tflite','910mnJzJt','3889473PRIlMO','segHeight','Input\x20width:','equal','HEAPF32','5254160fQEUzk','now','Output\x20channels:','catch','3507HytUkG','webgl','_getInputMemoryOffset','max','Output\x20memory\x20offset:','_getOutputHeight','4jBYFoP','_getOutputMemoryOffset','initTime','_loadModel','int32','1319420UvKAJd','Model\x20load\x20result:'];_0x584c=function(){return _0xd9994d;};return _0x584c();}import{PsySegBuf,ColorSpaceType}from'../PsySeg.mjs';import{preProcessing}from'../Preprocessing/Preprocessing.js';'use\x20strict';export class SmartEyes{constructor(_0x52d5d2){const _0x3754ed=_0x1769;this[_0x3754ed(0x9e)]=Date[_0x3754ed(0xb9)](),this[_0x3754ed(0x7a)]=0x0,this['model']=null,this[_0x3754ed(0x85)]=null,this['type']=_0x3754ed(0xb1),this[_0x3754ed(0x8a)]=0xa0,this[_0x3754ed(0xb4)]=0x60;if(_0x52d5d2==='tflite')this[_0x3754ed(0xa5)]='tflite',this['segWidth']=0xa0,this[_0x3754ed(0xb4)]=0x60,createTFLiteModule()[_0x3754ed(0x96)](_0x4bc212=>{const _0x3712b3=_0x3754ed;this[_0x3712b3(0xa7)]=_0x4bc212;let _0x17965f=this['model'][_0x3712b3(0xa8)](),_0x279b90=this[_0x3712b3(0xa7)][_0x3712b3(0x7b)](0x636c0);this[_0x3712b3(0x7a)]=Date[_0x3712b3(0xb9)]()-this[_0x3712b3(0x9e)],console[_0x3712b3(0x89)](_0x3712b3(0x91)),console[_0x3712b3(0x89)](_0x3712b3(0x8b),_0x17965f),console['log'](_0x3712b3(0x7e),_0x279b90),console[_0x3712b3(0x89)]('Input\x20memory\x20offset:',this[_0x3712b3(0xa7)]['_getInputMemoryOffset']()),console[_0x3712b3(0x89)](_0x3712b3(0x9d),this['model']['_getInputHeight']()),console[_0x3712b3(0x89)](_0x3712b3(0xb5),this[_0x3712b3(0xa7)][_0x3712b3(0x81)]()),console[_0x3712b3(0x89)](_0x3712b3(0x9c),this[_0x3712b3(0xa7)][_0x3712b3(0x97)]()),console[_0x3712b3(0x89)](_0x3712b3(0x76),this[_0x3712b3(0xa7)]['_getOutputMemoryOffset']()),console[_0x3712b3(0x89)](_0x3712b3(0x8c),this[_0x3712b3(0xa7)][_0x3712b3(0x77)]()),console[_0x3712b3(0x89)](_0x3712b3(0xaa),this[_0x3712b3(0xa7)][_0x3712b3(0x82)]()),console[_0x3712b3(0x89)](_0x3712b3(0xba),this[_0x3712b3(0xa7)][_0x3712b3(0x86)]());})[_0x3754ed(0xbb)](_0x346055=>{const _0x52d822=_0x3754ed;this['initTime']=Date['now']()-this[_0x52d822(0x9e)],console['log'](_0x52d822(0x87)+_0x346055);});else{this['type']=_0x3754ed(0x92);let _0x2c1b79='https://psyjs-cdn.nuvixa.com/model.json';this[_0x3754ed(0x8a)]=0xc0,this[_0x3754ed(0xb4)]=0xc0;let _0x587840=new Headers(),_0x33495a={'method':'GET','headers':_0x587840,'mode':_0x3754ed(0xa3),'cache':_0x3754ed(0xa1)};_0x5b0b3c[_0x3754ed(0x8f)](_0x2c1b79,{'requestInit':_0x33495a})[_0x3754ed(0x96)](_0x49943e=>{const _0xf715aa=_0x3754ed;_0x5b0b3c[_0xf715aa(0xac)](_0xf715aa(0xbd)),this[_0xf715aa(0xa7)]=_0x49943e,console[_0xf715aa(0x89)]('Current\x20backend\x20is:\x20'+_0x5b0b3c[_0xf715aa(0xb0)]()),this[_0xf715aa(0x7a)]=Date[_0xf715aa(0xb9)]()-this['startTime'];})[_0x3754ed(0xbb)](_0x5540ce=>{const _0x3e8155=_0x3754ed;this[_0x3e8155(0x7a)]=Date[_0x3e8155(0xb9)]()-this[_0x3e8155(0x9e)],console[_0x3e8155(0x89)](_0x3e8155(0x94)+_0x5540ce);});}this[_0x3754ed(0xae)]=this['runTFJSInference'][_0x3754ed(0xab)](this),this[_0x3754ed(0x99)]=this[_0x3754ed(0x99)][_0x3754ed(0xab)](this),this[_0x3754ed(0x8d)]=this[_0x3754ed(0x8d)]['bind'](this);}async[_0xf3f87d(0xae)](_0x2ba74a){const _0x39e1f7=_0xf3f87d;let _0x5df21d=null;const _0x2ef752=await _0x5b0b3c['browser'][_0x39e1f7(0x9f)](_0x2ba74a[_0x39e1f7(0x80)]);try{const _0x116c26=_0x2ef752['expandDims'](0x0);var _0x82ecac=await this[_0x39e1f7(0xa7)]['predict'](_0x5b0b3c[_0x39e1f7(0xa4)](_0x116c26,_0x39e1f7(0x7c)));_0x82ecac=_0x82ecac[_0x39e1f7(0xa0)](0x3)[_0x39e1f7(0x90)](0x3);const _0x398ada=_0x82ecac[_0x39e1f7(0x7f)](0x3),_0x3b19bd=_0x82ecac['equal'](0x1),_0x52cd52=_0x82ecac[_0x39e1f7(0xb6)](0x2),_0x2aa9c5=_0x398ada['logicalOr'](_0x3b19bd),_0x166b2c=_0x2aa9c5['logicalOr'](_0x52cd52);_0x5df21d=_0x5b0b3c[_0x39e1f7(0xa4)](_0x166b2c,'float32'),_0x398ada[_0x39e1f7(0xa2)](),_0x3b19bd['dispose'](),_0x52cd52[_0x39e1f7(0xa2)](),_0x2aa9c5[_0x39e1f7(0xa2)](),_0x166b2c[_0x39e1f7(0xa2)](),_0x116c26[_0x39e1f7(0xa2)](),_0x82ecac[_0x39e1f7(0xa2)]();}catch(_0x460e0e){console[_0x39e1f7(0x89)](_0x39e1f7(0x8e)+_0x460e0e);}return _0x5df21d;}async[_0xf3f87d(0x99)](_0x292229,_0x376f3d=![]){const _0x374955=_0xf3f87d;let _0x3a24f8=this[_0x374955(0xa7)][_0x374955(0xbe)]()/0x4,_0x1183da=this[_0x374955(0xa7)][_0x374955(0x79)]()/0x4,_0x54129a=_0x292229['data'],_0xa35290=this[_0x374955(0x8a)]*this[_0x374955(0xb4)];for(let _0x58e14d=0x0;_0x58e14d<_0xa35290;_0x58e14d++){this[_0x374955(0xa7)]['HEAPF32'][_0x3a24f8+_0x58e14d*0x3]=_0x54129a['data'][_0x58e14d*0x4]/0xff,this[_0x374955(0xa7)][_0x374955(0xb7)][_0x3a24f8+_0x58e14d*0x3+0x1]=_0x54129a[_0x374955(0x80)][_0x58e14d*0x4+0x1]/0xff,this[_0x374955(0xa7)][_0x374955(0xb7)][_0x3a24f8+_0x58e14d*0x3+0x2]=_0x54129a[_0x374955(0x80)][_0x58e14d*0x4+0x2]/0xff;}this['model'][_0x374955(0x9b)]();let _0x5dded1=new ImageData(this[_0x374955(0x8a)],this[_0x374955(0xb4)]),_0x3a54e9=new ImageData(this[_0x374955(0x8a)],this[_0x374955(0xb4)]);for(let _0x38f3bb=0x0;_0x38f3bb<_0xa35290;_0x38f3bb++){const _0x55fdcb=_0x376f3d?this[_0x374955(0xa7)][_0x374955(0xb7)][_0x1183da+_0x38f3bb*0x2+0x1]:this[_0x374955(0xa7)][_0x374955(0xb7)][_0x1183da+_0x38f3bb*0x2],_0x34b78e=_0x376f3d?this[_0x374955(0xa7)][_0x374955(0xb7)][_0x1183da+_0x38f3bb*0x2]:this[_0x374955(0xa7)][_0x374955(0xb7)][_0x1183da+_0x38f3bb*0x2+0x1],_0x235eca=Math[_0x374955(0xbf)](_0x55fdcb,_0x34b78e),_0x5c96a0=Math[_0x374955(0x95)](_0x55fdcb-_0x235eca),_0x1aa7a7=Math['exp'](_0x34b78e-_0x235eca);_0x5dded1['data'][_0x38f3bb*0x4+0x3]=0xff*_0x1aa7a7/(_0x5c96a0+_0x1aa7a7),!_0x376f3d&&(_0x5dded1[_0x374955(0x80)][_0x38f3bb*0x4+0x2]=0xff*_0x1aa7a7/(_0x5c96a0+_0x1aa7a7),_0x5dded1[_0x374955(0x80)][_0x38f3bb*0x4+0x1]=0xff*_0x1aa7a7/(_0x5c96a0+_0x1aa7a7),_0x5dded1[_0x374955(0x80)][_0x38f3bb*0x4]=0xff*_0x1aa7a7/(_0x5c96a0+_0x1aa7a7)),_0x3a54e9['data'][_0x38f3bb*0x4+0x3]=0xff*_0x1aa7a7/(_0x5c96a0+_0x1aa7a7);}return _0x5dded1;}async['run'](_0xfe291e,_0x32e6d8,_0x2d7f9f=![]){const _0x3460e7=_0xf3f87d;let _0x4d9f89=null;const _0x8dd06a=this[_0x3460e7(0xa5)]===_0x3460e7(0xb1)?0xa0:0xc0,_0x29802a=this[_0x3460e7(0xa5)]===_0x3460e7(0xb1)?0x60:0xc0;let _0x2c36be=await preProcessing(_0xfe291e[_0x3460e7(0x80)],_0x32e6d8,{'width':_0xfe291e[_0x3460e7(0x98)],'height':_0xfe291e[_0x3460e7(0x84)]},ColorSpaceType['COLOR_SPACE_RGBA'],{'width':_0x8dd06a,'height':_0x29802a});if(_0x2c36be===null)return null;let _0x238cf7=new ImageData(_0x2c36be,_0x8dd06a,_0x29802a),_0x2a8d72=PsySegBuf(_0xfe291e[_0x3460e7(0x98)],_0xfe291e[_0x3460e7(0x84)],0x4,_0x238cf7);return this[_0x3460e7(0xa5)]===_0x3460e7(0xb1)?await this['runTFLiteInference'](_0x2a8d72,_0x2d7f9f)['then'](_0x23cdd8=>{_0x4d9f89=_0x23cdd8;})[_0x3460e7(0xbb)](_0x2b8655=>{const _0x5e4c82=_0x3460e7;console[_0x5e4c82(0x89)](_0x5e4c82(0xad)+_0x2b8655);}):await this['runTFJSInference'](_0x2a8d72)[_0x3460e7(0x96)](_0x9558e4=>{_0x4d9f89=_0x9558e4;})[_0x3460e7(0xbb)](_0x52cf80=>{const _0x553b4e=_0x3460e7;console[_0x553b4e(0x89)](_0x553b4e(0xad)+_0x52cf80);}),_0x4d9f89;}async[_0xf3f87d(0x93)](){const _0xa07588=_0xf3f87d;this[_0xa07588(0xa6)]!==_0xa07588(0xb1)?_0x5b0b3c[_0xa07588(0xa2)](this[_0xa07588(0xa7)]):delete this[_0xa07588(0xa7)],delete this[_0xa07588(0xb4)],delete this[_0xa07588(0x8a)],delete this['type'],delete this[_0xa07588(0xae)],delete this[_0xa07588(0x99)],delete this['run'];}}
+//! Tensorflow JS library
+import * as tf from '@tensorflow/tfjs';
+import { PsySegBuf, ColorSpaceType } from '../PsySeg.mjs';
+import { preProcessing } from "../Preprocessing/Preprocessing.js";
+
+//! Strict mode
+"use strict";
+
+//! ML class for storing segmentation techniques
+export class SmartEyes {
+
+    //! Constructor for SmartEyes
+    constructor(backend) {
+
+        //! Init Time
+        this.startTime = Date.now();
+        this.initTime = 0;
+
+        //! ML model
+        this.model = null;
+        this.tflite_model = null;
+
+        //! Type of model
+        this.type = "tflite";
+
+        //! Inference Size
+        this.segWidth = 160;
+        this.segHeight = 96;
+        
+        //! Check backend
+        if (backend === "tflite") {
+
+            //! Change type of model & size
+            this.type = "tflite";
+            this.segWidth = 160;
+            this.segHeight = 96;
+
+            //! Loading model
+            createTFLiteModule()
+            .then((module) => {
+                        
+                // let module 
+                //! Get tflite module
+                this.model = module;
+                        
+                //! Loading model buffer
+                let modelBufferOffset = this.model._getModelBufferMemoryOffset();
+
+                //! Loading model
+                let loadModel = this.model._loadModel(407232);
+
+                //! Init Time
+                this.initTime = Date.now() - this.startTime;
+
+                //! Logging Info
+                console.log("modeling model");
+                console.log('Model buffer memory offset:', modelBufferOffset);
+                console.log('Model load result:', loadModel);
+                console.log('Input memory offset:',this.model._getInputMemoryOffset());
+                console.log('Input height:', this.model._getInputHeight());
+                console.log('Input width:', this.model._getInputWidth());
+                console.log('Input channels:', this.model._getInputChannelCount());
+                console.log('Output memory offset:',this.model._getOutputMemoryOffset());
+                console.log('Output height:', this.model._getOutputHeight())
+                console.log('Output width:', this.model._getOutputWidth())
+                console.log('Output channels:',this.model._getOutputChannelCount());
+            })
+            .catch((e) => { 
+
+                //! Init Time
+                this.initTime = Date.now() - this.startTime;
+                
+                //! Logging failed
+                console.log("Create tflite module failed due to " + e); 
+            });
+
+        } else {
+
+            //! Change type of model & size
+            this.type = "tfjs";
+            //let modelLink = "http://localhost:8080/model/tfjs/model.json";
+            let modelLink = "https://psyjs-cdn.nuvixa.com/model.json";
+            this.segWidth = 192;
+            this.segHeight = 192;
+
+            //! Assign headers for model loading
+            let myHeaders = new Headers();
+            let myInit = { method: 'GET',
+                           headers: myHeaders,
+                           mode: 'cors',
+                           cache: 'default' };
+
+            //! Loading model
+            tf.loadGraphModel(modelLink, { requestInit: myInit })
+            .then((model) => { 
+            
+                //! Set backend
+                /*
+                switch (backend) {
+                    case 'gpu': tf.setBackend('webgl');
+                               break;
+                    case 'cpu': tf.setBackend('cpu');
+                                break;
+                    case 'wasm': tf.setBackend('wasm');
+                              break;
+                    default: break;
+                }
+                */
+
+                //! Set backend --> always uses "webgl" (GPU)
+                tf.setBackend('webgl');
+            
+                //! Get model
+                this.model = model;
+
+                //! Log backend
+                console.log("Current backend is: " + tf.getBackend());
+
+                //! Init Time
+                this.initTime = Date.now() - this.startTime;
+            })
+            .catch((e) => {
+
+                //! Init Time
+                this.initTime = Date.now() - this.startTime;
+
+                //! Logging failed
+                console.log("Loading model error due to " + e);
+            });
+        }
+
+        // Bind methods
+        this.runTFJSInference = this.runTFJSInference.bind(this);
+        this.runTFLiteInference = this.runTFLiteInference.bind(this);
+        this.run = this.run.bind(this);
+    }
+    
+    //! TFJS model inference
+    async runTFJSInference(inputBuf) {
+
+        //! Default return
+        let dnnMask = null;
+
+        //! Convert src image from ImageBitMap to tensor type
+        const imgData = await tf.browser.fromPixels(inputBuf.data);
+        
+        try {
+            
+            //! Expand dimension from 3 -> 1 channel
+            const expdim = imgData.expandDims(0);
+
+            //! Predict the model output
+            var out = await this.model.predict(tf.cast(expdim, 'int32'));
+            out = out.argMax(3).expandDims(3);
+
+            //! Threshold the output to obtain mask
+            const msk_1 = out.greater(3);
+            const msk_2 = out.equal(1);
+            const msk_3 = out.equal(2);
+            const msk_4 = msk_1.logicalOr(msk_2);
+            const msk = msk_4.logicalOr(msk_3);
+            dnnMask = tf.cast(msk, 'float32');
+
+            //! Dispose all tensors
+            msk_1.dispose();
+            msk_2.dispose();
+            msk_3.dispose();
+            msk_4.dispose();
+            msk.dispose();
+            expdim.dispose();
+            out.dispose();
+
+        } catch(e) {
+            console.log("Cannot get alpha mask due to DNN issue " + e);
+        }
+
+        //! Return
+        return dnnMask;
+    }
+
+    //! TFLite model inference
+    async runTFLiteInference(inputBuf, isRemoveBG = false) {
+
+        //! Offset variables
+        let inputMemoryOffset = this.model._getInputMemoryOffset() / 4;
+        let outputMemoryOffset = this.model._getOutputMemoryOffset() / 4;
+        let imageData = inputBuf.data;
+        let segPixelCount = this.segWidth * this.segHeight;
+
+        //! Assign input data
+        for (let i = 0; i < segPixelCount; i++) {
+            this.model.HEAPF32[inputMemoryOffset + i * 3] = imageData.data[i * 4] / 255;
+            this.model.HEAPF32[inputMemoryOffset + i * 3 + 1] = imageData.data[i * 4 + 1] / 255;
+            this.model.HEAPF32[inputMemoryOffset + i * 3 + 2] = imageData.data[i * 4 + 2] / 255;
+        }
+
+        //! Run inference
+        this.model._runInference();
+
+        //! Get output buffer
+        let segmentationMask = new ImageData(this.segWidth, this.segHeight);
+        let segmentationMaskOverlay = new ImageData(this.segWidth, this.segHeight);
+        for (let i = 0; i < segPixelCount; i++) {
+            const background = isRemoveBG
+              ? this.model.HEAPF32[outputMemoryOffset + i * 2 + 1]
+              : this.model.HEAPF32[outputMemoryOffset + i * 2]
+            const person = isRemoveBG
+              ? this.model.HEAPF32[outputMemoryOffset + i * 2]
+              : this.model.HEAPF32[outputMemoryOffset + i * 2 + 1]
+            
+            const shift = Math.max(background, person);
+            const backgroundExp = Math.exp(background - shift);
+            const personExp = Math.exp(person - shift);
+            segmentationMask.data[i * 4 + 3] = (255 * personExp) / (backgroundExp + personExp); // softmax
+            if (!isRemoveBG) {
+                segmentationMask.data[i * 4 + 2] = (255 * personExp) / (backgroundExp + personExp); // softmax
+                segmentationMask.data[i * 4 + 1] = (255 * personExp) / (backgroundExp + personExp); // softmax
+                segmentationMask.data[i * 4] = (255 * personExp) / (backgroundExp + personExp); // softmax
+            }
+
+            //TODO : Add for UI alpha section
+            segmentationMaskOverlay.data[i * 4 + 3] = (255 * personExp) / (backgroundExp + personExp); // softmax
+
+        }
+
+        //! Return mask
+        return segmentationMask;
+    } 
+
+    //! Running ML models with refinement stage
+    async run(inputBuf, colorSpace, isRemoveBG = false) {
+        
+        //! Return mask
+        let dnnMask = null;
+
+        //! Resizing input frame to model size
+    	const segWidth = this.type === 'tflite' ? 160 : 192
+	    const segHeight = this.type === 'tflite' ? 96 : 192
+
+	    //! Pre-processing input frame
+	    let srcData = await preProcessing(
+		    inputBuf.data,
+		    colorSpace,
+		    {'width': inputBuf.width, 'height': inputBuf.height},
+		    ColorSpaceType.COLOR_SPACE_RGBA,
+		    {'width': segWidth, 'height': segHeight}
+	    )
+        
+        if (srcData === null) {
+            return null;
+        }
+
+	    let input = new ImageData(srcData, segWidth, segHeight);
+	    let procInputBuf = PsySegBuf(inputBuf.width, inputBuf.height, 4, input);
+
+        //! Check model type
+        if (this.type === "tflite") {
+            await this.runTFLiteInference(procInputBuf, isRemoveBG)
+            .then((mask) => { dnnMask = mask; })
+            .catch((e) => { console.log("Cannot get inference due to "+ e); });
+        } else {
+            await this.runTFJSInference(procInputBuf)
+            .then((mask) => { dnnMask = mask; })
+            .catch((e) => { console.log("Cannot get inference due to "+ e); });
+        }
+
+        //! Return value
+        return dnnMask;
+    }
+
+    //! Destroy data of SmartEyes
+    async release() {
+        if (this.backend !== "tflite") {
+            tf.dispose(this.model);
+        } else {
+            delete this.model;
+        }
+        delete this.segHeight;
+        delete this.segWidth;
+        delete this.type;
+        delete this.runTFJSInference;
+        delete this.runTFLiteInference;
+        delete this.run;
+    }
+}

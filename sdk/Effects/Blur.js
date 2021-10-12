@@ -1,1 +1,254 @@
-(function(_0x4ae65d,_0x27c1f3){const _0x10769e=_0x112c,_0x53b2ea=_0x4ae65d();while(!![]){try{const _0x556be1=parseInt(_0x10769e(0x1e8))/0x1*(parseInt(_0x10769e(0x1e1))/0x2)+parseInt(_0x10769e(0x1f2))/0x3*(parseInt(_0x10769e(0x1ed))/0x4)+parseInt(_0x10769e(0x1ef))/0x5+-parseInt(_0x10769e(0x1f1))/0x6*(parseInt(_0x10769e(0x1e0))/0x7)+-parseInt(_0x10769e(0x1da))/0x8*(-parseInt(_0x10769e(0x1eb))/0x9)+parseInt(_0x10769e(0x1e4))/0xa+-parseInt(_0x10769e(0x1d7))/0xb;if(_0x556be1===_0x27c1f3)break;else _0x53b2ea['push'](_0x53b2ea['shift']());}catch(_0x80dc86){_0x53b2ea['push'](_0x53b2ea['shift']());}}}(_0x5f55,0xa5954));function _0x112c(_0x3c6551,_0x1620d7){const _0x5f5511=_0x5f55();return _0x112c=function(_0x112ce3,_0x5ba7c6){_0x112ce3=_0x112ce3-0x1cd;let _0x375d8f=_0x5f5511[_0x112ce3];return _0x375d8f;},_0x112c(_0x3c6551,_0x1620d7);}import*as _0x7dc1a from'@tensorflow/tfjs';import{MergeBlending,psy_seg_get_alpha_internal}from'./Common.js';function get1dGaussianKernel(_0x546d1a,_0x2adf32){const _0xa2fafa=_0x112c;let _0x2d968a=_0x7dc1a[_0xa2fafa(0x1df)](Math[_0xa2fafa(0x1f4)](-_0x546d1a/0x2)+0x1,Math[_0xa2fafa(0x1f4)](_0x546d1a/0x2)+0x1);return _0x2d968a=_0x7dc1a[_0xa2fafa(0x1d6)](_0x2d968a,0x2),_0x2d968a=_0x7dc1a['exp'](_0x2d968a[_0xa2fafa(0x1e7)](-0x2*(_0x2adf32*_0x2adf32))),_0x2d968a=_0x2d968a[_0xa2fafa(0x1e7)](_0x7dc1a[_0xa2fafa(0x1f6)](_0x2d968a)),_0x2d968a;}function get2dGaussianKernel(_0x34501,_0x228e10){_0x228e10=_0x228e10||0.3*((_0x34501-0x1)*0.5-0x1)+0.8;let _0x16bd49=get1dGaussianKernel(_0x34501,_0x228e10);return _0x7dc1a['outerProduct'](_0x16bd49,_0x16bd49);}function getGaussianKernel(_0x3c1cb5,_0x5b67c0){const _0x3082a3=_0x112c;return _0x7dc1a[_0x3082a3(0x1e9)](()=>{const _0x1c52a1=_0x3082a3;let _0x5e5b89=get2dGaussianKernel(_0x3c1cb5,_0x5b67c0),_0x26abb0=_0x7dc1a[_0x1c52a1(0x1d1)]([_0x5e5b89,_0x5e5b89,_0x5e5b89]);return _0x7dc1a['reshape'](_0x26abb0,[_0x3c1cb5,_0x3c1cb5,0x3,0x1]);});}function Blurring(_0x4baae5,_0x4a5132,_0x43125c,_0xe97754){const _0x5878fa=_0x112c,_0x1aa0e4=_0x7dc1a[_0x5878fa(0x1e9)](()=>{const _0x1855b4=_0x5878fa,_0x7f1bc8=getGaussianKernel(_0x4a5132,0x7),_0x4fbcfd=_0x7dc1a[_0x1855b4(0x1e6)](_0x4baae5,_0x7f1bc8,0x1,_0x1855b4(0x1d5))[_0x1855b4(0x1ea)]([_0xe97754,_0x43125c]);return _0x4fbcfd;});return _0x1aa0e4;}export async function BlurBackgroundGPU(_0x59c5b1,_0xf6415b,_0x152ec1,_0x5e5e24,_0x1c8138,_0xe2581c,_0x6645a0=null){const _0x1baca9=_0x112c;let _0x24d4ee=![],_0x38185a=null,_0x3a6b6e=null;try{_0xf6415b['data']!==null?await psy_seg_get_alpha_internal(_0x59c5b1,_0xf6415b,_0x152ec1,_0x5e5e24)['then'](async _0x54be95=>{const _0x408221=_0x112c;if(_0x54be95){_0x38185a=await _0x7dc1a[_0x408221(0x1d9)][_0x408221(0x1ee)](_0xf6415b[_0x408221(0x1cd)])[_0x408221(0x1e7)](_0x7dc1a['scalar'](0xff)),_0x3a6b6e=await _0x7dc1a[_0x408221(0x1d9)][_0x408221(0x1ee)](_0x5e5e24[_0x408221(0x1cd)])[_0x408221(0x1e7)](_0x7dc1a['scalar'](0xff));const _0xbff2a3=Blurring(_0x38185a,_0xe2581c,_0xf6415b[_0x408221(0x1db)],_0xf6415b['height']),_0x19c16c=MergeBlending(_0x38185a,_0xbff2a3,_0x3a6b6e);let _0x9d124b=await _0x7dc1a['browser'][_0x408221(0x1e2)](_0x19c16c['mul'](_0x7dc1a[_0x408221(0x1e5)](0.96)));_0x1c8138[_0x408221(0x1cd)]=new ImageData(_0x9d124b,_0xf6415b[_0x408221(0x1db)],_0xf6415b[_0x408221(0x1de)]),_0x24d4ee=!![];}else console[_0x408221(0x1d4)]('Cannot\x20get\x20alpha\x20mask\x20without\x20error\x20notification');})[_0x1baca9(0x1e3)](_0x38db61=>{const _0x7ecc26=_0x1baca9;console['log'](_0x7ecc26(0x1f3)+_0x38db61);}):console[_0x1baca9(0x1d4)](_0x1baca9(0x1d2));}catch(_0x1edbdf){console[_0x1baca9(0x1d4)](_0x1baca9(0x1ce)+_0x1edbdf);}return _0x24d4ee;}function _0x5f55(){const _0x48a104=['valid','pow','13003562BQqsHJ','tflite','browser','3464uuNKft','width','_create_buffer','Cannot\x20get\x20alpha\x20mask\x20without\x20error\x20notification','height','range','164311bUFewU','2GDrAMv','toPixels','catch','1648290RhpWwz','scalar','depthwiseConv2d','div','1023137XIqjUj','tidy','resizeBilinear','18243NfKajw','HEAP8','40VfPdeF','fromPixels','798020bAplQy','erode','102HpcHEn','10245XhnzJe','cannot\x20get\x20alpha\x20mask\x20due\x20to\x20','floor','buffer','sum','data','Cannot\x20get\x20alpha\x20mask\x20due\x20to\x20','set','_blurBackground','stack','Input\x20has\x20a\x20problem,\x20please\x20re-check','_destroy_buffer','log'];_0x5f55=function(){return _0x48a104;};return _0x5f55();}export async function BlurBackgroundWASM(_0x2d0439,_0xe98e6,_0x4dac1e,_0x213f58,_0x59d053,_0x3395fb,_0x6954aa,_0x43635d=null){const _0x494107=_0x112c;let _0x48a68e=![],_0x5be35a,_0x238900,_0x3f82b5=null,_0x108189=null,_0x19147b=null,_0x43e806=null;try{_0xe98e6['data']!==null?await psy_seg_get_alpha_internal(_0x2d0439,_0xe98e6,_0x4dac1e,_0x213f58)['then'](async _0x1801c7=>{const _0x625fc9=_0x112c;if(_0x1801c7){_0x48a68e=!![];let _0x3717ff=0x1;_0x43635d!==null&&(_0x43635d['erode']>=0x1&&(_0x3717ff=0x2*_0x43635d[_0x625fc9(0x1f0)]-0x1));_0x238900=_0xe98e6['data']['data'],_0x5be35a=_0x213f58[_0x625fc9(0x1cd)]['data'];!_0x3f82b5&&(_0x108189=Module['_get_buffer_size'](_0xe98e6[_0x625fc9(0x1db)],_0xe98e6['height']),_0x3f82b5=Module[_0x625fc9(0x1dc)](_0x108189));!_0x19147b&&(_0x43e806=Module['_get_buffer_size'](_0x213f58[_0x625fc9(0x1db)],_0x213f58['height']),_0x19147b=Module[_0x625fc9(0x1dc)](_0x43e806));Module[_0x625fc9(0x1ec)][_0x625fc9(0x1cf)](_0x238900,_0x3f82b5),Module[_0x625fc9(0x1ec)][_0x625fc9(0x1cf)](_0x5be35a,_0x19147b);_0x6954aa===_0x625fc9(0x1d8)?Module['_blurBackgroundLite'](_0x3f82b5,_0x19147b,_0x3395fb,_0xe98e6[_0x625fc9(0x1db)],_0xe98e6[_0x625fc9(0x1de)],_0x213f58[_0x625fc9(0x1db)],_0x213f58[_0x625fc9(0x1de)],_0x3717ff):Module[_0x625fc9(0x1d0)](_0x3f82b5,_0x19147b,_0x3395fb,_0xe98e6[_0x625fc9(0x1db)],_0xe98e6['height']);let _0x51bc40=new Uint8ClampedArray(new Uint8Array(Module[_0x625fc9(0x1ec)][_0x625fc9(0x1f5)],_0x3f82b5,_0x108189)),_0x127424=new ImageData(_0x51bc40,_0xe98e6[_0x625fc9(0x1db)],_0xe98e6['height']);_0x59d053[_0x625fc9(0x1cd)]=_0x127424,Module[_0x625fc9(0x1d3)](_0x3f82b5),Module['_destroy_buffer'](_0x19147b);}else console['log'](_0x625fc9(0x1dd));})['catch'](_0x99cdb3=>{const _0x2f1ab1=_0x112c;console[_0x2f1ab1(0x1d4)](_0x2f1ab1(0x1f3)+_0x99cdb3);}):console['log'](_0x494107(0x1d2));}catch(_0x3e7f13){console['log'](_0x494107(0x1ce)+_0x3e7f13);}return _0x48a68e;}
+//! Tensorflow JS library
+import * as tf from '@tensorflow/tfjs';
+
+//! Dependencies function
+import { MergeBlending, psy_seg_get_alpha_internal } from './Common.js';
+
+//! Create 1d Gaussian kernel with size & sigma
+function get1dGaussianKernel(size, sigma) {
+    let x = tf.range(Math.floor(-size / 2) + 1, Math.floor(size / 2) + 1);
+    x = tf.pow(x, 2);
+    x = tf.exp(x.div(-2.0 * (sigma * sigma)))
+    x = x.div(tf.sum(x));
+    return x;
+}
+
+//! Create 2d Gaussian kernel with size & sigma
+function get2dGaussianKernel(size, sigma) {
+    sigma = sigma || (0.3 * ((size - 1) * 0.5 - 1) + 0.8);
+    let kerne1d = get1dGaussianKernel(size, sigma);
+    return tf.outerProduct(kerne1d, kerne1d)
+}
+
+//! Create Gaussian kernel with size & sigma
+function getGaussianKernel(size, sigma) {
+    return tf.tidy(() => {
+        let kerne2d = get2dGaussianKernel(size, sigma)
+        let kerne3d = tf.stack([kerne2d, kerne2d, kerne2d])
+        return tf.reshape(kerne3d, [size, size, 3, 1])
+    }) 
+}
+
+//! Blurring image background
+function Blurring(image, blurSize, width, height) {
+
+    //! Get blur background image
+    const blur_bgim = tf.tidy(() => {
+        const b_kernel = getGaussianKernel(blurSize, 7);
+        const result = tf.depthwiseConv2d(image, b_kernel, 1, "valid").resizeBilinear([height, width]);
+        return result;
+    });
+    
+    //! Return blur background image
+    return blur_bgim;
+}
+
+/**
+ * Blurring background effect with GPU backend
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutColor The overlay background buffer with same size as input buffer
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param blurSize: blurred level (odd number) -> the higher value, the lower
+ * performance but better blurred quality
+ * 
+ * @param pPsySegExtraParams advanced configuration for customer usages
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function BlurBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySegExtraParams = null) {
+
+    //! Overlay BG status
+	let status = false;
+	let fgImg = null;
+	let mask = null;
+
+	try {
+		//! Capture the frame from the webcam.
+		if (pInColor.data !== null) {
+
+			//! Getting alpha mask first
+			await psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha)
+			.then(async (alpha_status) => {
+
+				//! Check returned status
+				if (alpha_status) {
+
+					//! Convert to tensor type
+					fgImg = await tf.browser.fromPixels(pInColor.data).div(tf.scalar(255.0));
+					mask = await tf.browser.fromPixels(pOutAlpha.data).div(tf.scalar(255.0));
+
+                    //! Get blurring background
+                    const blur_bgim = Blurring(
+                        fgImg,
+                        blurSize,
+						pInColor.width,
+						pInColor.height
+                    );
+
+					//! Blending background
+                    const blend_out =  MergeBlending(
+                        fgImg,
+                        blur_bgim,
+                        mask
+                    );
+
+                    //! Get ImageData in type Uint8ClampedArray
+					let convert = await tf.browser.toPixels(blend_out.mul(tf.scalar(0.96)));
+					pOutColor.data = new ImageData(convert, pInColor.width, pInColor.height);
+                    status = true;
+
+				} else {
+                    console.log("Cannot get alpha mask without error notification");
+                }
+			})
+			.catch((e) => { console.log("cannot get alpha mask due to " + e); });
+		} else {
+			console.log("Input has a problem, please re-check");
+		}
+	} catch (e) {
+		console.log("Cannot get alpha mask due to " + e);
+	}
+
+	// Return status
+	return status;
+}
+  
+/**
+ * Blurring background effect with WASM backend
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutColor The overlay background buffer with same size as input buffer
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param blurSize: blurred level (odd number) -> the higher value, the lower
+ * performance but better blurred quality
+ * 
+ * @param pPsySegExtraParams advanced configuration for customer usages
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, type, pPsySegExtraParams = null) {
+
+    //! Overlay BG status
+	let status = false;
+	let alpha_image;
+	let input_image;
+	let memory = null;
+	let memorySize = null;
+	let alphaMemory = null;
+	let alphaMemorySize = null;
+
+	try {
+		//! Capture the frame from the webcam.
+		if (pInColor.data !== null) {
+
+			//! Getting alpha mask first
+			await psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha)
+			.then(async (alpha_status) => {
+
+				//! Check returned status
+				if (alpha_status) {
+
+						status = true;
+
+						//! Get default parameter for erode value
+						let erodeValue = 1;
+						if (pPsySegExtraParams !== null) {
+							if (pPsySegExtraParams.erode >= 1) {
+								erodeValue = 2 * pPsySegExtraParams.erode - 1;
+							}
+						}
+
+						//! Input frame
+						input_image = pInColor.data.data;
+						alpha_image = pOutAlpha.data.data;
+
+						//! Alpha mask
+						// let alphaSrc = await tf.browser.fromPixels(pOutAlpha.data);
+						// let alphaData = tf.tidy(() => {return tf.image.resizeBilinear(alphaSrc, [pInColor.height, pInColor.width]).div(tf.scalar(255.0))});
+						// alpha_image = await tf.browser.toPixels(alphaData);
+						// alphaData.dispose();
+						// alphaSrc.dispose();
+
+						//! Create buffer for input
+						if (!memory) {
+							memorySize = Module._get_buffer_size(pInColor.width, pInColor.height);
+							memory = Module._create_buffer(memorySize);
+						}
+
+						//! Create buffer for alpha mask
+						if (!alphaMemory) {
+							alphaMemorySize = Module._get_buffer_size(pOutAlpha.width, pOutAlpha.height);
+							alphaMemory = Module._create_buffer(alphaMemorySize);
+						}
+
+						//! Assign data for buffer
+						Module.HEAP8.set(input_image, memory);
+						Module.HEAP8.set(alpha_image, alphaMemory);
+						
+						//! Check type of model
+						if (type === "tflite") {
+						  Module._blurBackgroundLite(memory, alphaMemory, blurSize, pInColor.width, pInColor.height, pOutAlpha.width, pOutAlpha.height, erodeValue);
+						} else {
+						  Module._blurBackground(memory, alphaMemory, blurSize, pInColor.width, pInColor.height);
+						}
+						
+						//! Convert data array to ImageData
+						let imageData = new Uint8ClampedArray(new Uint8Array(Module.HEAP8.buffer, memory, memorySize));
+						let image = new ImageData(imageData, pInColor.width, pInColor.height);
+						pOutColor.data = image;
+
+						// memory management
+						//delete alpha_image;
+						// alpha_image.delete();
+						// input_image.delete();
+						Module._destroy_buffer(memory);
+						Module._destroy_buffer(alphaMemory);
+
+					} else {
+						console.log("Cannot get alpha mask without error notification");
+					}
+				})
+				.catch((e) => { console.log("cannot get alpha mask due to " + e); });
+		} else {
+			console.log("Input has a problem, please re-check");
+		}
+	} catch (e) {
+		console.log("Cannot get alpha mask due to " + e);
+	}
+
+	// Return status
+	return status;
+}

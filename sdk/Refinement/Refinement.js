@@ -1,1 +1,63 @@
-(function(_0x29f019,_0x427c13){const _0x49331f=_0x591c,_0x391d9d=_0x29f019();while(!![]){try{const _0x7a73c=parseInt(_0x49331f(0xa0))/0x1+parseInt(_0x49331f(0x9a))/0x2*(parseInt(_0x49331f(0x8f))/0x3)+-parseInt(_0x49331f(0x99))/0x4*(-parseInt(_0x49331f(0x9e))/0x5)+parseInt(_0x49331f(0xa1))/0x6+parseInt(_0x49331f(0x8d))/0x7*(-parseInt(_0x49331f(0x8e))/0x8)+parseInt(_0x49331f(0x98))/0x9*(-parseInt(_0x49331f(0x9b))/0xa)+parseInt(_0x49331f(0x9f))/0xb;if(_0x7a73c===_0x427c13)break;else _0x391d9d['push'](_0x391d9d['shift']());}catch(_0x277a5d){_0x391d9d['push'](_0x391d9d['shift']());}}}(_0x1185,0xad067));function _0x1185(){const _0x4dd816=['squeeze','conv2d','tensor4d','scalar','min','747rBzLYP','78448wRZpdS','2CzEzjm','68610tscGqH','tidy','sub','20LSOWSa','13380631hDaDCp','234287OHwziz','4369914PQDLQq','reshape','height','clipByValue','div','mul','896QSXBoh','70456GzUasc','443985oMoogi','width','same','slice'];_0x1185=function(){return _0x4dd816;};return _0x1185();}import*as _0x3868e9 from'@tensorflow/tfjs';'use\x20strict';export function refine(_0x5b0efd,_0x39c958){const _0x9ed4a7=_0x591c,_0x26512f=_0x3868e9[_0x9ed4a7(0x9c)](()=>{const _0x5aa6cb=_0x9ed4a7,_0x5f4e31=_0x5b0efd[_0x5aa6cb(0x92)]([0x0,0x0,0x0,0x0],[0x1,_0x39c958[_0x5aa6cb(0x90)],_0x39c958[_0x5aa6cb(0x89)],0x1])[_0x5aa6cb(0x88)]([0x1,_0x39c958[_0x5aa6cb(0x90)],_0x39c958[_0x5aa6cb(0x89)],0x1]),_0x4af9fd=_0x3868e9[_0x5aa6cb(0x95)]([0.00092991,0.00223073,0.00416755,0.00606375,0.00687113,0.00606375,0.00416755,0.00223073,0.00535124,0.00999743,0.01454618,0.01648298,0.01454618,0.00999743,0.00416755,0.00999743,0.01867766,0.02717584,0.03079426,0.02717584,0.01867766,0.00606375,0.01454618,0.02717584,0.03954061,0.04480539,0.03954061,0.02717584,0.00687113,0.01648298,0.03079426,0.04480539,0.05077116,0.04480539,0.03079426,0.00606375,0.01454618,0.02717584,0.03954061,0.04480539,0.03954061,0.02717584,0.00416755,0.00999743,0.01867766,0.02717584,0.03079426,0.02717584,0.01867766],[0x7,0x7,0x1,0x1]),_0x409601=_0x3868e9[_0x5aa6cb(0x94)](_0x5f4e31,_0x4af9fd,[0x1,0x1],_0x5aa6cb(0x91)),_0x159893=_0x409601[_0x5aa6cb(0x93)](0x0),_0x955218=_0x159893[_0x5aa6cb(0x9d)](_0x159893[_0x5aa6cb(0x97)]())[_0x5aa6cb(0x8b)](_0x159893['max']()[_0x5aa6cb(0x9d)](_0x159893[_0x5aa6cb(0x97)]()));return smoothstep(_0x955218);});return _0x26512f;}function _0x591c(_0x44801d,_0x5092fa){const _0x118528=_0x1185();return _0x591c=function(_0x591c1a,_0x57b7f3){_0x591c1a=_0x591c1a-0x88;let _0x47399f=_0x118528[_0x591c1a];return _0x47399f;},_0x591c(_0x44801d,_0x5092fa);}function smoothstep(_0xdeb90a){const _0x57bbae=_0x591c,_0x512632=_0x3868e9[_0x57bbae(0x9c)](()=>{const _0x2b38da=_0x57bbae,_0x2c3ac3=_0x3868e9['scalar'](0.3),_0x3eadff=_0x3868e9['scalar'](0.5),_0x4c4b4b=_0x3868e9[_0x2b38da(0x8a)](_0xdeb90a[_0x2b38da(0x9d)](_0x2c3ac3)[_0x2b38da(0x8b)](_0x3eadff['sub'](_0x2c3ac3)),0x0,0x1);return _0x3868e9['square'](_0x4c4b4b)[_0x2b38da(0x8c)](_0x3868e9[_0x2b38da(0x96)](0x3)[_0x2b38da(0x9d)](_0x4c4b4b['mul'](_0x3868e9[_0x2b38da(0x96)](0x2))));});return _0x512632;}
+//! Tensorflow JS library
+import * as tf from '@tensorflow/tfjs';
+
+//! Strict mode
+"use strict";
+
+//! Perform mask feathering (Gaussian-blurring + Egde-smoothing)
+export function refine(mask, modelSize) {
+    
+    //! Refinement output
+    const refine_out = tf.tidy(() => {
+        
+        //! Reshape input
+        const newmask = mask.slice([0, 0, 0, 0], [1, modelSize.width, modelSize.height, 1]).reshape([1, modelSize.width, modelSize.height, 1]);
+        
+        //! Gaussian kernel of size (7,7)
+        const kernel = tf.tensor4d([0.00092991, 0.00223073, 0.00416755, 0.00606375, 0.00687113, 0.00606375,
+            0.00416755, 0.00223073, 0.00535124, 0.00999743, 0.01454618, 0.01648298,
+            0.01454618, 0.00999743, 0.00416755, 0.00999743, 0.01867766, 0.02717584,
+            0.03079426, 0.02717584, 0.01867766, 0.00606375, 0.01454618, 0.02717584,
+            0.03954061, 0.04480539, 0.03954061, 0.02717584, 0.00687113, 0.01648298,
+            0.03079426, 0.04480539, 0.05077116, 0.04480539, 0.03079426, 0.00606375,
+            0.01454618, 0.02717584, 0.03954061, 0.04480539, 0.03954061, 0.02717584,
+            0.00416755, 0.00999743, 0.01867766, 0.02717584, 0.03079426, 0.02717584,
+            0.01867766], [7, 7, 1, 1]);
+            
+        //! Convolve the mask with kernel   
+        const blurred = tf.conv2d(newmask, kernel, [1, 1], 'same');
+        
+        //! Reshape the output
+        const fb = blurred.squeeze(0);
+        
+        //! Normalize the mask  to 0..1 range
+        const norm_msk = fb.sub(fb.min()).div(fb.max().sub(fb.min()));
+        
+        //! Return the result
+        return smoothstep(norm_msk);
+    });
+    
+    //! Return refinement output
+    return refine_out;
+}
+  
+//! Smooth the mask edges
+function smoothstep(x) {
+    
+    //! Smoothing output
+    const smooth_out = tf.tidy(() => {
+        
+        //! Define the left and right edges
+        const edge0 = tf.scalar(0.3);
+        const edge1 = tf.scalar(0.5);
+        
+        //! Scale, bias and saturate x to 0..1 range
+        const z = tf.clipByValue(x.sub(edge0).div(edge1.sub(edge0)), 0.0, 1.0);
+        
+        //! Evaluate polynomial  z * z * (3 - 2 * x)
+        return tf.square(z).mul(tf.scalar(3).sub(z.mul(tf.scalar(2))));
+    });
+    
+    // Return smoothing output
+    return smooth_out;
+}
