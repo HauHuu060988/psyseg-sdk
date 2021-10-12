@@ -1,5 +1,5 @@
 {
-  "name": "psyseg-sdk",
+  "name": "psysegjs-sdk",
   "version": "1.0.0",
   "description": "",
   "main": "sdk/index.mjs",
