@@ -2,10 +2,11 @@
   "name": "psyseg-sdk",
   "version": "1.0.0",
   "description": "",
-  "main": "./sdk/index.js",
+  "main": "sdk/index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HauHuu060988/psyseg.git"
