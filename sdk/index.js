@@ -1,10 +1,10 @@
+import * as tf from '@tensorflow/tfjs';
 
-
-const callInteger =()=>{
+const callInteger1 =()=>{
 	return 100
 }
 
-const callString =()=>{
+const callString1 =()=>{
 	return 'Hello world'
 }
 
