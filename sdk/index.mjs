@@ -1,6 +1,6 @@
 import * as tf from '@tensorflow/tfjs';
 
-const callInteger1 =()=>{
+export const callInteger1 =()=>{
 	tf.engine().startScope();
 	console.log('callInteger1')
 	tf.engine().endScope();
@@ -8,9 +8,9 @@ const callInteger1 =()=>{
 
 }
 
-const callString1 =()=>{
+export const callString1 =()=>{
 	return 'Hello world'
 }
-
-exports.callInteger = 100
-exports.callString = 'Hello world'
+//
+// exports.callInteger = 100
+// exports.callString = 'Hello world'
