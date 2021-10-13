@@ -1,6 +1,6 @@
 {
-  "name": "psysegjs-sdk",
-  "version": "1.6.0",
+  "name": "psyseg-sdk",
+  "version": "1.0.0",
   "description": "",
   "main": "./sdk/PsySeg.mjs",
   "scripts": {

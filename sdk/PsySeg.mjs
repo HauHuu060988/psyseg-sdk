@@ -829,5 +829,5 @@ export async function psy_seg_remove_background_with_extra_params(pPsySeg, pInCo
 }
 
 export const getVersion =()=>{
-	return '1.6.0'
+	return '1.0.0'
 }
