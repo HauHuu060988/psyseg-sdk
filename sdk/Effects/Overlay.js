@@ -1,1 +1,247 @@
-function _0x5522(_0x2f9a6c,_0x16118e){const _0x396165=_0x3961();return _0x5522=function(_0x5522a4,_0x191055){_0x5522a4=_0x5522a4-0xa0;let _0x22b700=_0x396165[_0x5522a4];return _0x22b700;},_0x5522(_0x2f9a6c,_0x16118e);}(function(_0x4685c1,_0x70f9fd){const _0x42f61e=_0x5522,_0x4e1bd9=_0x4685c1();while(!![]){try{const _0x32d942=-parseInt(_0x42f61e(0xbe))/0x1+parseInt(_0x42f61e(0xa8))/0x2*(parseInt(_0x42f61e(0xac))/0x3)+-parseInt(_0x42f61e(0xb3))/0x4+-parseInt(_0x42f61e(0xb7))/0x5*(parseInt(_0x42f61e(0xad))/0x6)+-parseInt(_0x42f61e(0xbc))/0x7*(-parseInt(_0x42f61e(0xc1))/0x8)+parseInt(_0x42f61e(0xbb))/0x9+parseInt(_0x42f61e(0xb0))/0xa;if(_0x32d942===_0x70f9fd)break;else _0x4e1bd9['push'](_0x4e1bd9['shift']());}catch(_0x11b03f){_0x4e1bd9['push'](_0x4e1bd9['shift']());}}}(_0x3961,0x731d6));import*as _0x3c22c3 from'@tensorflow/tfjs';import{MergeBlending,psy_seg_get_alpha_internal}from'./Common.js';export async function OverlayBackgroundGPU(_0x5229bc,_0x916ed,_0x365a3d,_0x56062d,_0x258c06,_0x2e7b09,_0xf652c2=null){const _0x1d728d=_0x5522;let _0x44ba7c=![],_0x3cb70f=null,_0x54bc9c=null,_0x31ad05=null;try{_0x916ed['data']!==null&&_0x365a3d[_0x1d728d(0xba)]!==null?await psy_seg_get_alpha_internal(_0x5229bc,_0x916ed,_0x56062d,_0x258c06)[_0x1d728d(0xb8)](async _0x59bcdf=>{const _0x4e4a1e=_0x1d728d;if(_0x59bcdf){_0x3cb70f=await _0x3c22c3['browser'][_0x4e4a1e(0xa7)](_0x916ed[_0x4e4a1e(0xba)])[_0x4e4a1e(0xa5)](_0x3c22c3[_0x4e4a1e(0xb4)](0xff)),_0x54bc9c=await _0x3c22c3[_0x4e4a1e(0xa9)]['fromPixels'](_0x365a3d[_0x4e4a1e(0xba)])['div'](_0x3c22c3[_0x4e4a1e(0xb4)](0xff)),_0x31ad05=await _0x3c22c3[_0x4e4a1e(0xa9)][_0x4e4a1e(0xa7)](_0x258c06[_0x4e4a1e(0xba)])[_0x4e4a1e(0xa5)](_0x3c22c3[_0x4e4a1e(0xb4)](0xff));const _0x936f1d=MergeBlending(_0x3cb70f,_0x54bc9c,_0x31ad05);let _0x26d8af=await _0x3c22c3[_0x4e4a1e(0xa9)][_0x4e4a1e(0xbf)](_0x936f1d);_0x2e7b09[_0x4e4a1e(0xba)]=new ImageData(_0x26d8af,_0x365a3d[_0x4e4a1e(0xb1)],_0x365a3d[_0x4e4a1e(0xaa)]),_0x44ba7c=!![];}else console['log'](_0x4e4a1e(0xa6));})['catch'](_0xaa19cf=>{const _0x44fbc1=_0x1d728d;console[_0x44fbc1(0xa3)](_0x44fbc1(0xb6)+_0xaa19cf);}):console[_0x1d728d(0xa3)]('Input\x20has\x20a\x20problem,\x20please\x20re-check');}catch(_0x5d230){console[_0x1d728d(0xa3)]('Cannot\x20get\x20alpha\x20mask\x20due\x20to\x20'+_0x5d230);}return _0x44ba7c;}export async function OverlayBackgroundWASM(_0x5c999b,_0x1b8130,_0x25b9f0,_0x4e3131,_0x467ad9,_0x4aa33d,_0x25f40c,_0x4c7b5e){const _0x3950ad=_0x5522;let _0x490f0b=![],_0x2a0d1c,_0x4ead42,_0x39b10d,_0x58a17c=null,_0x10bfea=null,_0x5125c4=null,_0x448e98=null,_0x40e24b=null,_0x44fd6d=null;try{_0x1b8130[_0x3950ad(0xba)]!==null&&_0x25b9f0['data']!==null?await psy_seg_get_alpha_internal(_0x5c999b,_0x1b8130,_0x4e3131,_0x467ad9)[_0x3950ad(0xb8)](async _0x1a0a6f=>{const _0x333f04=_0x3950ad;if(_0x1a0a6f){_0x490f0b=!![];let _0x32f036=0x1;_0x4c7b5e!==null&&(_0x4c7b5e[_0x333f04(0xab)]>=0x1&&(_0x32f036=0x2*_0x4c7b5e[_0x333f04(0xab)]-0x1));_0x39b10d=_0x1b8130[_0x333f04(0xba)][_0x333f04(0xba)],_0x2a0d1c=_0x25b9f0[_0x333f04(0xba)][_0x333f04(0xba)],_0x4ead42=_0x467ad9[_0x333f04(0xba)][_0x333f04(0xba)];!_0x58a17c&&(_0x10bfea=Module[_0x333f04(0xa2)](_0x1b8130[_0x333f04(0xb1)],_0x1b8130[_0x333f04(0xaa)]),_0x58a17c=Module[_0x333f04(0xae)](_0x10bfea));!_0x5125c4&&(_0x448e98=Module[_0x333f04(0xa2)](_0x25b9f0['width'],_0x25b9f0['height']),_0x5125c4=Module[_0x333f04(0xae)](_0x448e98));!_0x40e24b&&(_0x44fd6d=Module[_0x333f04(0xa2)](_0x467ad9['width'],_0x467ad9[_0x333f04(0xaa)]),_0x40e24b=Module['_create_buffer'](_0x44fd6d));Module[_0x333f04(0xb9)][_0x333f04(0xa4)](_0x39b10d,_0x58a17c),Module[_0x333f04(0xb9)][_0x333f04(0xa4)](_0x2a0d1c,_0x5125c4),Module['HEAP8'][_0x333f04(0xa4)](_0x4ead42,_0x40e24b);_0x25f40c===_0x333f04(0xa0)?Module[_0x333f04(0xb2)](_0x58a17c,_0x5125c4,_0x40e24b,_0x1b8130[_0x333f04(0xb1)],_0x1b8130[_0x333f04(0xaa)],_0x467ad9[_0x333f04(0xb1)],_0x467ad9['height'],_0x32f036):Module[_0x333f04(0xa1)](_0x58a17c,_0x5125c4,_0x40e24b,_0x1b8130[_0x333f04(0xb1)],_0x1b8130['height']);let _0x18f145=new Uint8ClampedArray(new Uint8Array(Module[_0x333f04(0xb9)][_0x333f04(0xbd)],_0x58a17c,_0x10bfea)),_0x5a8070=new ImageData(_0x18f145,_0x1b8130[_0x333f04(0xb1)],_0x1b8130[_0x333f04(0xaa)]);_0x4aa33d['data']=_0x5a8070,Module['_destroy_buffer'](_0x58a17c),Module[_0x333f04(0xaf)](_0x5125c4),Module[_0x333f04(0xaf)](_0x40e24b);}else console[_0x333f04(0xa3)](_0x333f04(0xa6));})['catch'](_0x2687ca=>{const _0x17b0cc=_0x3950ad;console[_0x17b0cc(0xa3)](_0x17b0cc(0xb6)+_0x2687ca);}):console[_0x3950ad(0xa3)](_0x3950ad(0xb5));}catch(_0x149232){console['log'](_0x3950ad(0xc0)+_0x149232);}return _0x490f0b;}function _0x3961(){const _0x3dfee5=['set','div','Cannot\x20get\x20alpha\x20mask\x20without\x20error\x20notification','fromPixels','1065266BrvxLU','browser','height','erode','3naVIAP','4024686EbGFrN','_create_buffer','_destroy_buffer','7481130VGicdZ','width','_replaceBackgroundLite','3763616dsQPwX','scalar','Input\x20has\x20a\x20problem,\x20please\x20re-check','cannot\x20get\x20alpha\x20mask\x20due\x20to\x20','5oGdHBP','then','HEAP8','data','3769560UWpnqy','21NQxUwP','buffer','505330qbBLVG','toPixels','Cannot\x20get\x20alpha\x20mask\x20due\x20to\x20','2370504WFDKjY','tflite','_replaceBackground','_get_buffer_size','log'];_0x3961=function(){return _0x3dfee5;};return _0x3961();}
+// Tensorflow JS library
+import * as tf from '@tensorflow/tfjs';
+
+//! Dependencies function
+import { MergeBlending, psy_seg_get_alpha_internal } from './Common.js';
+
+/**
+ * Overlay background effects with GPU backend
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param pInBackground The color portion of the input. We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutAlpha The alpha mask, value is in range [0, 1].
+ * We expect that the that this to
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pOutColor The overlay background buffer with same size as input buffer
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pPsySegExtraParams advanced configuration for customer usages
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function OverlayBackgroundGPU(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams = null) {
+
+	//! Overlay BG status
+	let status = false;
+	let fgImg = null;
+	let bgImg = null;
+	let mask = null;
+
+	try {
+
+		//! Capture the frame from the webcam.
+		if ((pInColor.data !== null) && (pInBackground.data !== null)) {
+
+			//! Getting alpha mask first
+			await psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha)
+			.then(async (alpha_status) => {
+
+				//! Check returned status
+				if (alpha_status) {
+
+					//! Convert to tensor type
+					fgImg = await tf.browser.fromPixels(pInColor.data).div(tf.scalar(255.0));
+					bgImg = await tf.browser.fromPixels(pInBackground.data).div(tf.scalar(255.0));
+					mask = await tf.browser.fromPixels(pOutAlpha.data).div(tf.scalar(255.0));
+
+					//! Blending background
+                    const blend_out =  MergeBlending(
+                        fgImg,
+                        bgImg,
+                        mask
+                    );
+
+                    //! Get ImageData in type Uint8ClampedArray
+					let convert = await tf.browser.toPixels(blend_out);
+					pOutColor.data = new ImageData(convert, pInBackground.width, pInBackground.height);
+                    status = true;
+					
+				} else {
+                    console.log("Cannot get alpha mask without error notification");
+                }
+			})
+			.catch((e) => { console.log("cannot get alpha mask due to " + e); });
+		} else {
+			console.log("Input has a problem, please re-check");
+		}
+	} catch (e) {
+		console.log("Cannot get alpha mask due to " + e);
+	}
+
+	// Return status
+	return status;
+}
+
+
+/**
+ * Overlay background effects with WASM backend
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param pInBackground The color portion of the input. We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutAlpha The alpha mask, value is in range [0, 1].
+ * We expect that the that this to
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pOutColor The overlay background buffer with same size as input buffer
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pPsySegExtraParams advanced configuration for customer usages
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, type, pPsySegExtraParams) {
+	
+	//! Overlay BG status
+	let status = false;
+	let bg_image;
+	let alpha_image;
+	let input_image;
+	let memory = null;
+	let memorySize = null;
+	let bgiMemory = null;
+	let bgiMemorySize = null;
+	let alphaMemory = null;
+	let alphaMemorySize = null;
+
+	try {
+
+		//! Capture the frame from the webcam.
+		if ((pInColor.data !== null) && (pInBackground.data !== null)) {
+
+			//! Getting alpha mask first
+			await psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha)
+			.then(async (alpha_status) => {
+
+				//! Check returned status
+				if (alpha_status) {
+
+						status = true;
+
+						//! Get default parameter for erode value
+						let erodeValue = 1;
+						if (pPsySegExtraParams !== null) {
+							if (pPsySegExtraParams.erode >= 1) {
+								erodeValue = 2 * pPsySegExtraParams.erode - 1;
+							}
+						}
+
+						//! Input frame
+						input_image = pInColor.data.data;
+
+						// //! Alpha mask
+						// let alphaSrc = await tf.browser.fromPixels(pOutAlpha.data);
+						// let alphaData = tf.tidy(() => {return tf.image.resizeBilinear(alphaSrc, [pInColor.height, pInColor.width]).div(tf.scalar(255.0))});
+						// alpha_image = await tf.browser.toPixels(alphaData);
+						// alphaData.dispose();
+						// alphaSrc.dispose();
+
+						//! Background image
+						bg_image = pInBackground.data.data;
+						alpha_image = pOutAlpha.data.data;
+
+						//! Create buffer for input
+						if (!memory) {
+							memorySize = Module._get_buffer_size(pInColor.width, pInColor.height);
+							memory = Module._create_buffer(memorySize);
+						}
+
+						//! Create buffer for background
+						if (!bgiMemory) {
+							bgiMemorySize = Module._get_buffer_size(pInBackground.width, pInBackground.height);
+							bgiMemory = Module._create_buffer(bgiMemorySize);
+						}
+
+						//! Create buffer for alpha mask
+						if (!alphaMemory) {
+							alphaMemorySize = Module._get_buffer_size(pOutAlpha.width, pOutAlpha.height);
+							alphaMemory = Module._create_buffer(alphaMemorySize);
+						}
+
+						//! Assign data for buffer
+						Module.HEAP8.set(input_image, memory);
+						Module.HEAP8.set(bg_image, bgiMemory);
+						Module.HEAP8.set(alpha_image, alphaMemory);
+						
+						//! Check type of model
+						if (type === "tflite") {
+							Module._replaceBackgroundLite(memory, bgiMemory, alphaMemory, pInColor.width, pInColor.height, pOutAlpha.width, pOutAlpha.height, erodeValue);
+						} else {
+							Module._replaceBackground(memory, bgiMemory, alphaMemory, pInColor.width, pInColor.height);
+						}
+
+						//! Convert data array to ImageData
+						let imageData = new Uint8ClampedArray(new Uint8Array(Module.HEAP8.buffer, memory, memorySize));
+						let image = new ImageData(imageData, pInColor.width, pInColor.height);
+                        pOutColor.data = image;
+
+						// memory management
+                        //delete alpha_image;
+						// alpha_image.delete();
+						// input_image.delete();
+						// bg_image.delete();
+						Module._destroy_buffer(memory);
+						Module._destroy_buffer(bgiMemory);
+						Module._destroy_buffer(alphaMemory);
+
+					} else {
+						console.log("Cannot get alpha mask without error notification");
+					}
+				})
+			.catch((e) => { console.log("cannot get alpha mask due to " + e); });
+		} else {
+			console.log("Input has a problem, please re-check");
+		}
+	} catch (e) {
+		console.log("Cannot get alpha mask due to " + e);
+	}
+
+	// Return status
+	return status;
+}

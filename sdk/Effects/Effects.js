@@ -1,1 +1,190 @@
-(function(_0x4db75b,_0x531d15){const _0x57bdc9=_0x120c,_0x203abd=_0x4db75b();while(!![]){try{const _0x13cb37=parseInt(_0x57bdc9(0x1e7))/0x1*(-parseInt(_0x57bdc9(0x1d7))/0x2)+parseInt(_0x57bdc9(0x1e4))/0x3+-parseInt(_0x57bdc9(0x1ea))/0x4+-parseInt(_0x57bdc9(0x1de))/0x5*(-parseInt(_0x57bdc9(0x1e6))/0x6)+-parseInt(_0x57bdc9(0x1e2))/0x7*(parseInt(_0x57bdc9(0x1e1))/0x8)+parseInt(_0x57bdc9(0x1dc))/0x9*(parseInt(_0x57bdc9(0x1df))/0xa)+-parseInt(_0x57bdc9(0x1d6))/0xb*(-parseInt(_0x57bdc9(0x1e3))/0xc);if(_0x13cb37===_0x531d15)break;else _0x203abd['push'](_0x203abd['shift']());}catch(_0x56c8c0){_0x203abd['push'](_0x203abd['shift']());}}}(_0x723b,0xcc196));import{BlurBackgroundGPU,BlurBackgroundWASM}from'./Blur.js';import{OverlayBackgroundGPU,OverlayBackgroundWASM}from'./Overlay.js';import{RemoveBackgroundGPU,RemoveBackgroundWASM}from'./RemoveBG.js';function _0x723b(){const _0xe65cb7=['gpu','then','Cannot\x20overlay\x20background\x20WASM\x20due\x20to\x20','Cannot\x20blur\x20background\x20WASM\x20due\x20to\x20','3168855sIlSNq','log','170dWhTzl','10kqiiwe','catch','472synsfK','98413FqZFIJ','10272cfJHxJ','3253758RbagOE','wasm','160962YymBWa','49668OWauSh','tflite','backend','3478384TxGcOk','Cannot\x20overlay\x20background\x20GPU\x20due\x20to\x20','13244ybToQU','34gOxnEX'];_0x723b=function(){return _0xe65cb7;};return _0x723b();}export async function psy_seg_overlay_background_internal(_0x13e5d6,_0x15fe73,_0x312656,_0x5f101e,_0x3da20a,_0x1d0b9e,_0x551c79=null){const _0x2e6016=_0x120c;let _0x53a52c=![];switch(_0x13e5d6['backend']){case _0x2e6016(0x1d8):{await OverlayBackgroundGPU(_0x13e5d6,_0x15fe73,_0x312656,_0x5f101e,_0x3da20a,_0x1d0b9e,_0x551c79)['then'](_0x3ddf83=>_0x53a52c=_0x3ddf83)[_0x2e6016(0x1e0)](_0x2c3b10=>console[_0x2e6016(0x1dd)](_0x2e6016(0x1eb)+_0x2c3b10));break;}case _0x2e6016(0x1e5):{await OverlayBackgroundWASM(_0x13e5d6,_0x15fe73,_0x312656,_0x5f101e,_0x3da20a,_0x1d0b9e,_0x13e5d6[_0x2e6016(0x1e9)],_0x551c79)[_0x2e6016(0x1d9)](_0x3f3fad=>_0x53a52c=_0x3f3fad)[_0x2e6016(0x1e0)](_0x230b97=>console[_0x2e6016(0x1dd)](_0x2e6016(0x1da)+_0x230b97));break;}case _0x2e6016(0x1e8):{await OverlayBackgroundWASM(_0x13e5d6,_0x15fe73,_0x312656,_0x5f101e,_0x3da20a,_0x1d0b9e,_0x13e5d6[_0x2e6016(0x1e9)],_0x551c79)['then'](_0x4e260c=>_0x53a52c=_0x4e260c)[_0x2e6016(0x1e0)](_0x3a71ea=>console[_0x2e6016(0x1dd)](_0x2e6016(0x1da)+_0x3a71ea));break;}default:break;}return _0x53a52c;}export async function psy_seg_blur_background_internal(_0x5ad3e8,_0x5cb37d,_0x2918a5,_0x613344,_0x404819,_0x1a6a13,_0x483d51=null){const _0x2d9b01=_0x120c;let _0x235493=![];switch(_0x5ad3e8[_0x2d9b01(0x1e9)]){case _0x2d9b01(0x1d8):{await BlurBackgroundGPU(_0x5ad3e8,_0x5cb37d,_0x2918a5,_0x613344,_0x404819,_0x1a6a13,_0x483d51)[_0x2d9b01(0x1d9)](_0xc3b796=>_0x235493=_0xc3b796)[_0x2d9b01(0x1e0)](_0x44870c=>console[_0x2d9b01(0x1dd)]('Cannot\x20blur\x20background\x20GPU\x20due\x20to\x20'+_0x44870c));break;}case _0x2d9b01(0x1e5):{await BlurBackgroundWASM(_0x5ad3e8,_0x5cb37d,_0x2918a5,_0x613344,_0x404819,_0x1a6a13,_0x5ad3e8[_0x2d9b01(0x1e9)],_0x483d51)[_0x2d9b01(0x1d9)](_0x943abc=>_0x235493=_0x943abc)[_0x2d9b01(0x1e0)](_0x4e59a5=>console[_0x2d9b01(0x1dd)](_0x2d9b01(0x1db)+_0x4e59a5));break;}case _0x2d9b01(0x1e8):{await BlurBackgroundWASM(_0x5ad3e8,_0x5cb37d,_0x2918a5,_0x613344,_0x404819,_0x1a6a13,_0x5ad3e8[_0x2d9b01(0x1e9)],_0x483d51)['then'](_0x3806b2=>_0x235493=_0x3806b2)[_0x2d9b01(0x1e0)](_0x30be13=>console[_0x2d9b01(0x1dd)](_0x2d9b01(0x1db)+_0x30be13));break;}default:break;}return _0x235493;}function _0x120c(_0x52fe96,_0x4bd536){const _0x723b79=_0x723b();return _0x120c=function(_0x120c3c,_0x15198a){_0x120c3c=_0x120c3c-0x1d6;let _0xe27218=_0x723b79[_0x120c3c];return _0xe27218;},_0x120c(_0x52fe96,_0x4bd536);}export async function psy_seg_remove_background_internal(_0x44c281,_0x4d189c,_0x49a5d4,_0x31b97e,_0x46fc94,_0xe0a16b=null){const _0x5baacc=_0x120c;try{switch(_0x44c281[_0x5baacc(0x1e9)]){case _0x5baacc(0x1d8):{return await RemoveBackgroundGPU(_0x44c281,_0x4d189c,_0x49a5d4,_0x31b97e,_0x46fc94,_0xe0a16b);}case _0x5baacc(0x1e5):{return await RemoveBackgroundWASM(_0x44c281,_0x4d189c,_0x49a5d4,_0x31b97e,_0x46fc94,_0x44c281[_0x5baacc(0x1e9)],_0xe0a16b);}case _0x5baacc(0x1e8):{return await RemoveBackgroundWASM(_0x44c281,_0x4d189c,_0x49a5d4,_0x31b97e,_0x46fc94,_0x44c281[_0x5baacc(0x1e9)],_0xe0a16b);}default:break;}}catch(_0x40b9d1){console[_0x5baacc(0x1dd)]('Cannot\x20remove\x20background\x20by\x20'+_0x44c281[_0x5baacc(0x1e9)]+'\x20due\x20to',_0x40b9d1);}return![];}
+//! Dependencies function
+import { BlurBackgroundGPU, BlurBackgroundWASM } from "./Blur.js";
+import { OverlayBackgroundGPU, OverlayBackgroundWASM } from './Overlay.js';
+import { RemoveBackgroundGPU, RemoveBackgroundWASM } from './RemoveBG.js';
+
+/**
+ * Overlay background effects
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param pInBackground The color portion of the input. We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutAlpha The alpha mask, value is in range [0, 1].
+ * We expect that the that this to
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pOutColor The overlay background buffer with same size as input buffer
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pPsySegExtraParams advanced configuration for customer usages
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function psy_seg_overlay_background_internal(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams = null) {
+
+	//! Overlay BG status
+	let status = false;
+
+	switch (pPsySeg.backend) {
+		case "gpu": {
+			await OverlayBackgroundGPU(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)
+			.then(ret => status = ret)
+			.catch(e => console.log("Cannot overlay background GPU due to " + e));
+			break;
+		}	
+		case "wasm": {
+			await OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySeg.backend, pPsySegExtraParams)
+			.then(ret => status = ret)
+			.catch(e => console.log("Cannot overlay background WASM due to " + e));
+			break;
+		}
+		case "tflite": {
+			await OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySeg.backend, pPsySegExtraParams)
+			.then(ret => status = ret)
+			.catch(e => console.log("Cannot overlay background WASM due to " + e));
+			break;
+		}
+		default: break;
+	}
+
+	// Return status
+	return status;
+}
+
+/**
+ * Blurring background effects
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param pInBackground The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutColor The overlay background buffer with same size as input buffer
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pPsySegExtraParams advanced configuration for customer usages
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function psy_seg_blur_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySegExtraParams = null) {
+
+    //! Overlay BG status
+	let status = false;
+	switch (pPsySeg.backend) {
+		case "gpu": {
+			await BlurBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySegExtraParams)
+			.then(ret => status = ret)
+			.catch(e => console.log("Cannot blur background GPU due to " + e));
+			break;
+		}	
+		case "wasm": {
+			await BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySeg.backend, pPsySegExtraParams)
+			.then(ret => status = ret)
+			.catch(e => console.log("Cannot blur background WASM due to " + e));
+			break;
+		}
+		case "tflite": {
+			await BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySeg.backend, pPsySegExtraParams)
+			.then(ret => status = ret)
+			.catch(e => console.log("Cannot blur background WASM due to " + e));
+			break;
+		}
+		default: break;
+	}
+
+	// Return status
+	return status;
+}
+
+/**
+ * Get persona only effects
+ *
+ * @param pPsySeg the PsySeg object
+ *
+ * @param pInColor The color portion of the input.  We expect this
+ * to be an unsigned char buffer with width and height propety corresponding 
+ * to SetupData::colorWidth and SetupData::colorHeight.
+ * The real size of this buffer will depend on its COLOR_SPACE
+ * COLOR_SPACE_BGR/RGB : 3 * width * height bytes
+ * COLOR_SPACE_NV21/NV12/I420: width * height + width * height / 2 bytes
+ * 
+ * @param colorSpace The color space that describes the background color image
+ * support COLOR_SPACE_BGR, COLOR_SPACE_RGB, COLOR_SPACE_NV21, COLOR_SPACE_NV12
+ * COLOR_SPACE_I420
+ * 
+ * @param pOutAlpha The alpha mask, value is in range [0, 1].
+ * We expect that the that this to
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pOutColor The overlay background buffer with same size as input buffer
+ * be a 1 bytes_per_pixel buffer dimensions corresponding to
+ * SetupData::colorWidth and SetupData::colorHeight. The data
+ * pointer should point to an appropriately sized allocated array.
+ * 
+ * @param pPsySegExtraParams advanced configuration for customer usages
+ * 
+ ** @return true on success, false otherise
+ *
+ */
+export async function psy_seg_remove_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams = null) {
+	try {
+		switch (pPsySeg.backend) {
+			case 'gpu': {
+				return await RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)
+			}
+			case 'wasm': {
+				return await RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySeg.backend, pPsySegExtraParams)
+			}
+			case 'tflite': {
+				return await RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySeg.backend, pPsySegExtraParams)
+			}
+			default:
+				break
+		}
+	} catch (e) {
+		console.log(`Cannot remove background by ${pPsySeg.backend} due to`, e)
+	}
+	return false
+}

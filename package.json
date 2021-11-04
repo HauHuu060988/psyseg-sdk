@@ -2,7 +2,8 @@
   "name": "psyseg-sdk",
   "version": "2.1.0",
   "description": "",
-  "main": "./sdk/PsySeg.mjs",
+  "module": "sdk/PsySeg.js",
+  "types": "sdk/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
