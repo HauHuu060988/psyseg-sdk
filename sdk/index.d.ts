@@ -101,7 +101,7 @@ export function psy_seg_overlay_background(
   pInBackground: any,
   colorSpace: number,
   pOutColor: IPsySegBuf | null,
-  pPsySegExtraParams?: number
+  pPsySegExtraParams?: IPsySegExtraParams
 ): Promise<boolean>
 
 export function psy_seg_overlay_background_new(
@@ -110,7 +110,7 @@ export function psy_seg_overlay_background_new(
   pInBackground: any,
   colorSpace: number,
   pOutColor: IPsySegBuf | null,
-  pPsySegExtraParams?: number
+  pPsySegExtraParams?: IPsySegExtraParams
 ): Promise<boolean>
 
 export function psy_seg_blur_background(
@@ -119,7 +119,7 @@ export function psy_seg_blur_background(
   colorSpace: number,
   pOutColor: IPsySegBuf | null,
   blurSize: number,
-  pPsySegExtraParams?: number
+  pPsySegExtraParams?: IPsySegExtraParams
 ): Promise<boolean>
 
 export function psy_seg_remove_background(
@@ -127,5 +127,5 @@ export function psy_seg_remove_background(
   pInColor: IPsySegBuf | null,
   colorSpace: number,
   pOutColor: IPsySegBuf | null,
-  pPsySegExtraParams?: number
+  pPsySegExtraParams?: IPsySegExtraParams
 ): Promise<boolean>

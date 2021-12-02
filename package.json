@@ -2,6 +2,7 @@
   "name": "psyseg-sdk",
   "version": "2.1.2",
   "description": "",
+  "main": "sdk/PsySeg.js",
   "module": "sdk/PsySeg.js",
   "types": "sdk/index.d.ts",
   "scripts": {
