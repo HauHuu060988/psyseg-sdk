@@ -11,7 +11,7 @@ import {
 } from "./Effects/Effects.js";
 import { psy_seg_get_alpha_internal } from './Effects/Common.js';
 import { refine } from './Refinement/Refinement.js';
-import psysegModule from "./model/wasm-import/psyseg";
+import psysegModule from "./model/wasm-import/psyseg.mjs";
 
 psysegModule().then(module => window.Module = module)
 	.catch(error => console.error('Load psyseg module error: ', error))

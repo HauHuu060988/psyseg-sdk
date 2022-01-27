@@ -3,8 +3,8 @@ import * as tf from '@tensorflow/tfjs';
 import { PsySegBuf, ColorSpaceType } from '../PsySeg.js';
 import { preProcessing } from "../Preprocessing/Preprocessing.js";
 import { simd } from  "wasm-feature-detect";
-import createTFLiteModule from "../model/tflite-import/tflite"
-import createTFLiteSIMDModule from "../model/tflite-import/tflite-simd"
+import createTFLiteModule from "../model/tflite-import/tflite.mjs"
+import createTFLiteSIMDModule from "../model/tflite-import/tflite-simd.mjs"
 //! Strict mode
 "use strict";
 
