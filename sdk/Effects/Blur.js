@@ -112,18 +112,22 @@ export async function BlurBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha
                     //! Get ImageData in type Uint8ClampedArray
 					let convert = await tf.browser.toPixels(blend_out.mul(tf.scalar(0.96)));
 					pOutColor.data = new ImageData(convert, pInColor.width, pInColor.height);
-                    status = true;
+
+					// Successful Return
+					status = true;
 
 				} else {
-                    console.log("Cannot get alpha mask without error notification");
-                }
+          //console.log("Cannot get alpha mask without error notification");
+        }
 			})
-			.catch((e) => { console.log("cannot get alpha mask due to " + e); });
+			.catch((e) => { 
+				//console.log("cannot get alpha mask due to " + e); 
+			});
 		} else {
-			console.log("Input has a problem, please re-check");
+			//console.log("Input has a problem, please re-check");
 		}
 	} catch (e) {
-		console.log("Cannot get alpha mask due to " + e);
+		//console.log("Cannot get alpha mask due to " + e);
 	}
 
 	// Return status
@@ -181,11 +185,16 @@ export async function BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlph
 				//! Check returned status
 				if (alpha_status) {
 
-						status = true;
-
 						//! Get default parameter for erode value
 						let erodeValue = 1;
+						let enhanceFrame = true;
+						let gamma = 0.0;
 						if (pPsySegExtraParams !== null) {
+							enhanceFrame = pPsySegExtraParams.enhanceFrame;
+							if (enhanceFrame) {
+								gamma = pPsySegExtraParams.gamma;
+							}
+
 							if (pPsySegExtraParams.erode >= 1) {
 								erodeValue = 2 * pPsySegExtraParams.erode - 1;
 							}
@@ -220,7 +229,7 @@ export async function BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlph
 						
 						//! Check type of model
 						if (type === "tflite") {
-						  Module._blurBackgroundLite(memory, alphaMemory, blurSize, pInColor.width, pInColor.height, pOutAlpha.width, pOutAlpha.height, erodeValue);
+						  Module._blurBackgroundLite(memory, alphaMemory, blurSize, pInColor.width, pInColor.height, pOutAlpha.width, pOutAlpha.height, erodeValue, enhanceFrame, gamma);
 						} else {
 						  Module._blurBackground(memory, alphaMemory, blurSize, pInColor.width, pInColor.height);
 						}
@@ -237,16 +246,21 @@ export async function BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlph
 						Module._destroy_buffer(memory);
 						Module._destroy_buffer(alphaMemory);
 
+						// Successfull return
+						status = true;
+
 					} else {
-						console.log("Cannot get alpha mask without error notification");
+						//console.log("Cannot get alpha mask without error notification");
 					}
 				})
-				.catch((e) => { console.log("cannot get alpha mask due to " + e); });
+				.catch((e) => { 
+					//console.log("cannot get alpha mask due to " + e); 
+				});
 		} else {
-			console.log("Input has a problem, please re-check");
+			//console.log("Input has a problem, please re-check");
 		}
 	} catch (e) {
-		console.log("Cannot get alpha mask due to " + e);
+		//console.log("Cannot get alpha mask due to " + e);
 	}
 
 	// Return status

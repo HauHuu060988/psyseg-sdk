@@ -14,13 +14,19 @@ export async function preProcessing(srcImage, srcColorSpace, srcSize, dstColorSp
     //! Converting colorspace
     await convertColor(srcImage, srcColorSpace, dstColorSpace)
     .then((processedImg) => { colorspaceOut = processedImg })
-    .catch((e) => { console.log("Cannot covert colorspace due to " + e) });
+    .catch((e) => { 
+        //console.log("Cannot covert colorspace due to " + e) 
+    });
 
     //! Resize src image
     if (colorspaceOut !== null) {
         await convertSize(colorspaceOut, srcSize, dstSize)
-        .then((processedImg) => { resizeOut = processedImg })
-        .catch((e) => { console.log("Cannot convert size due to " + e) });
+        .then((processedImg) => { 
+            resizeOut = processedImg; 
+        })
+        .catch((e) => { 
+            //console.log("Cannot convert size due to " + e) 
+        });
     }
 
     //! Return final output

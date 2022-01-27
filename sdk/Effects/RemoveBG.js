@@ -30,7 +30,7 @@ import { psy_seg_get_alpha_internal } from './Common.js'
  */
 export async function RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams = null) {
   if (!pInColor.data) {
-    console.log('Input has a problem, please re-check');
+    //console.log('Input has a problem, please re-check');
     return false;
   }
 
@@ -40,7 +40,7 @@ export async function RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlp
 
     //! Check returned status
     if (!alphaStatus) {
-      console.log('Cannot get alpha mask without error notification');
+      //console.log('Cannot get alpha mask without error notification');
       return false;
     }
   
@@ -72,7 +72,7 @@ export async function RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlp
     pOutColor.data = new ImageData(imageBuffer, pInColor.width, pInColor.height);
     
   } catch (e) {
-    console.log('Cannot get alpha mask at RemoveBackgroundGPU due to ', e);
+    //console.log('Cannot get alpha mask at RemoveBackgroundGPU due to ', e);
     return false;
   }
 
@@ -108,7 +108,7 @@ export async function RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlp
  */
 export async function RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, type, pPsySegExtraParams = null) {
   if (!pInColor.data) {
-    console.log('Input has a problem, please re-check');
+    //console.log('Input has a problem, please re-check');
     return false;
   }
 
@@ -119,13 +119,20 @@ export async function RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAl
 
     //! Check returned status
     if (!alphaStatus) {
-      console.log('Cannot get alpha mask without error notification');
+      //console.log('Cannot get alpha mask without error notification');
       return false;
     }
 
     //! Get default parameter for erode value
     let erodeValue = 1;
+    let enhanceFrame = true;
+    let gamma = 0.0;
     if (pPsySegExtraParams !== null) {
+      enhanceFrame = pPsySegExtraParams.enhanceFrame;
+      if (enhanceFrame) {
+        gamma = pPsySegExtraParams.gamma;
+      }
+
       if (pPsySegExtraParams.erode >= 1) {
         erodeValue = 2 * pPsySegExtraParams.erode - 1;
       }
@@ -160,7 +167,7 @@ export async function RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAl
 
     //! Check type of model
     if (type === 'tflite') {
-      Module._removeBackgroundLite(memory, alphaMemory, width, height, pOutAlpha.width, pOutAlpha.height, erodeValue);
+      Module._removeBackgroundLite(memory, alphaMemory, width, height, pOutAlpha.width, pOutAlpha.height, erodeValue, enhanceFrame, gamma);
     } else {
       Module._removeBackground(memory, alphaMemory, width, height, pOutAlpha.width, pOutAlpha.height);
     }
@@ -173,7 +180,7 @@ export async function RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAl
     Module._destroy_buffer(alphaMemory);
 
   } catch (e) {
-    console.log('Cannot get alpha mask at RemoveBackgroundWASM due to ', e);
+    //console.log('Cannot get alpha mask at RemoveBackgroundWASM due to ', e);
     return false;
   }
 

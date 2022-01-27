@@ -78,18 +78,22 @@ export async function OverlayBackgroundGPU(pPsySeg, pInColor, pInBackground, col
                     //! Get ImageData in type Uint8ClampedArray
 					let convert = await tf.browser.toPixels(blend_out);
 					pOutColor.data = new ImageData(convert, pInBackground.width, pInBackground.height);
-                    status = true;
+
+					// Successful Return
+          status = true;
 					
 				} else {
-                    console.log("Cannot get alpha mask without error notification");
-                }
+          //console.log("Cannot get alpha mask without error notification");
+        }
 			})
-			.catch((e) => { console.log("cannot get alpha mask due to " + e); });
+			.catch((e) => { 
+				//console.log("cannot get alpha mask due to " + e); 
+			});
 		} else {
-			console.log("Input has a problem, please re-check");
+			//console.log("Input has a problem, please re-check");
 		}
 	} catch (e) {
-		console.log("Cannot get alpha mask due to " + e);
+		//console.log("Cannot get alpha mask due to " + e);
 	}
 
 	// Return status
@@ -162,11 +166,16 @@ export async function OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, co
 				//! Check returned status
 				if (alpha_status) {
 
-						status = true;
-
 						//! Get default parameter for erode value
 						let erodeValue = 1;
+						let enhanceFrame = true;
+						let gamma = 0.0;
 						if (pPsySegExtraParams !== null) {
+							enhanceFrame = pPsySegExtraParams.enhanceFrame;
+							if (enhanceFrame) {
+								gamma = pPsySegExtraParams.gamma;
+							}
+
 							if (pPsySegExtraParams.erode >= 1) {
 								erodeValue = 2 * pPsySegExtraParams.erode - 1;
 							}
@@ -211,7 +220,7 @@ export async function OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, co
 						
 						//! Check type of model
 						if (type === "tflite") {
-							Module._replaceBackgroundLite(memory, bgiMemory, alphaMemory, pInColor.width, pInColor.height, pOutAlpha.width, pOutAlpha.height, erodeValue);
+							Module._replaceBackgroundLite(memory, bgiMemory, alphaMemory, pInColor.width, pInColor.height, pOutAlpha.width, pOutAlpha.height, erodeValue, enhanceFrame, gamma);
 						} else {
 							Module._replaceBackground(memory, bgiMemory, alphaMemory, pInColor.width, pInColor.height);
 						}
@@ -230,16 +239,21 @@ export async function OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, co
 						Module._destroy_buffer(bgiMemory);
 						Module._destroy_buffer(alphaMemory);
 
+						// Successful return
+						status = true;
+
 					} else {
-						console.log("Cannot get alpha mask without error notification");
+						//console.log("Cannot get alpha mask without error notification");
 					}
 				})
-			.catch((e) => { console.log("cannot get alpha mask due to " + e); });
+			.catch((e) => { 
+				//console.log("cannot get alpha mask due to " + e); 
+			});
 		} else {
-			console.log("Input has a problem, please re-check");
+			//console.log("Input has a problem, please re-check");
 		}
 	} catch (e) {
-		console.log("Cannot get alpha mask due to " + e);
+		//console.log("Cannot get alpha mask due to " + e);
 	}
 
 	// Return status

@@ -11,6 +11,13 @@ import {
 } from "./Effects/Effects.js";
 import { psy_seg_get_alpha_internal } from './Effects/Common.js';
 import { refine } from './Refinement/Refinement.js';
+import psysegModule from "./model/wasm-import/psyseg";
+
+psysegModule().then(module => window.Module = module)
+	.catch(error => console.error('Load psyseg module error: ', error))
+
+//! license control
+import { getLicenseInitState, startCheckingLicense, stopCheckingLicense } from "./LicenseControl.js";
 
 //! Strict mode
 "use strict";
@@ -93,11 +100,17 @@ export function PsySegSetupInfo(width, height) {
  * @param erode: erode level for edge smoothing
  * 
  */ 
-export function PsySegExtraParams(erode = 1) {
+export function PsySegExtraParams(erode = 1, enhanceFrame = true, gamma = 0.0) {
 	return {
 
 		//! erode level for refinements
-		'erode': erode
+		'erode': erode,
+
+		//! enhance frame flag
+		'enhanceFrame': enhanceFrame,
+
+		//! gamma value for enhancement
+		'gamma': gamma
 		
 	}
 }
@@ -265,7 +278,9 @@ class PsySeg {
 			//! Succesful status
 			status = true;
 		})
-		.catch((e) => { console.log("Cannot get alpha mask due to " + e); });
+		.catch((e) => { 
+			//console.log("Cannot get alpha mask due to " + e); 
+		});
 
 		//! Return status
 		return status;
@@ -286,6 +301,12 @@ class PsySeg {
  * @arguments
  * @param pSetupInfo: + type: PsySegSetupInfo
  *                    + usage: provide setup information
+ * @param psyseg_url: + type: String
+ *                    + usage: local license file location
+ * @param token: + type: String
+ *               + usage: access token for license
+ * @param key: + type: String
+ *             + usage: access key for license
  * @param reload: + type: Boolean
  *                + usage: requesting to reload DNN model (default = true) 
  *                         (true = reload / false = keep previous)
@@ -293,7 +314,10 @@ class PsySeg {
  * @returns PsySeg instance (internal object)
  * 
  */
-export async function psy_seg_create(pSetupInfo, reload = true) {
+export async function psy_seg_create(pSetupInfo, psyseg_url, token, key, reload = true) {
+
+	//! checking license
+	await startCheckingLicense(psyseg_url, token, key);
 
 	//! Return PsySeg objects
 	return new PsySeg(pSetupInfo, "tflite", reload);
@@ -313,6 +337,12 @@ export async function psy_seg_create(pSetupInfo, reload = true) {
  * @arguments
  * @param pSetupInfo: + type: PsySegSetupInfo
  *                    + usage: provide setup information
+ * @param psyseg_url: + type: String
+ *                    + usage: local license file location
+ * @param token: + type: String
+ *               + usage: access token for license
+ * @param key: + type: String
+ *             + usage: access key for license
  * @param backend: + type: String
  *                 + usage: type of model backend. Currently, 3 types are
  *                          supported: "tflite" (default), "gpu", "wasm"
@@ -323,7 +353,10 @@ export async function psy_seg_create(pSetupInfo, reload = true) {
  * @returns PsySeg instance (internal object)
  * 
  */
-export async function psy_seg_create_internal(pSetupInfo, backend = 'tflite', reload = true) {
+export async function psy_seg_create_internal(pSetupInfo, psyseg_url, token, key, backend = 'tflite', reload = true) {
+
+	//! checking license
+	await startCheckingLicense(psyseg_url, token, key);
 
 	//! Return PsySeg objects
 	return new PsySeg(pSetupInfo, backend, reload);
@@ -346,6 +379,9 @@ export async function psy_seg_create_internal(pSetupInfo, backend = 'tflite', re
  * 
  */
 export async function psy_seg_destroy(pPsySeg) {
+
+	//! clear heart beat interval and inactive device uuid
+	await stopCheckingLicense();
 
 	//! Dispose model except "tflite" (automatically destroyed)
 	if (pPsySeg.backend !== "tflite") {
@@ -404,7 +440,9 @@ export async function psy_seg_create_background(bgData, colorSpace, bgSize, dstS
 		dstSize
 	)
 	.then((outputData) => { processedBG = outputData; })
-	.catch((e) => { console.log("Cannot create background due to " + e) });
+	.catch((e) => { 
+		//console.log("Cannot create background due to " + e);
+	});
 
 	//! Return PsySeg buffer
 	return PsySegBuf(dstSize.width, dstSize.height, 4, processedBG);
@@ -445,29 +483,35 @@ export async function psy_seg_get_alpha(pPsySeg, pInColor, colorSpace, pOutAlpha
 	tf.engine().startScope();
 
 	//! Run alpha mask
-	if (pPsySeg.SmartEyes.model !== null) {
-		await psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, true)
-		.then((out) => { status = out; })
-		.catch((e) => { console.log("Cannot get alpha effects due to " + e); });
-	}
-
-	//! Post-processing (only resizing)
-	if (pPsySeg.backend === "tflite") {
-
-		//! Resize alpha mask to input's size
-		let finalMask = await preProcessing(
-			pOutAlpha.data,
-			colorSpace,
-			{'width': pOutAlpha.width, 'height': pOutAlpha.height},
-			ColorSpaceType.COLOR_SPACE_RGBA,
-			{'width': pInColor.width, 'height': pInColor.height}
-		)
-
-		//! Set value for alpha mask after resizing
-		pOutAlpha.data = new ImageData(finalMask, pInColor.width, pInColor.height);
-		pOutAlpha.width = pInColor.width;
-		pOutAlpha.height = pInColor.height;
-
+	if (pPsySeg !== null) {
+		if (pPsySeg.SmartEyes.model !== null) {
+			await psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, true)
+			.then(async (out) => { 
+				status = out;
+				if (status) {
+					//! Post-processing (only resizing)
+					if (pPsySeg.backend === "tflite") {
+						
+						//! Resize alpha mask to input's size
+						let finalMask = await preProcessing(
+							pOutAlpha.data,
+							colorSpace,
+							{'width': pOutAlpha.width, 'height': pOutAlpha.height},
+							ColorSpaceType.COLOR_SPACE_RGBA,
+							{'width': pInColor.width, 'height': pInColor.height}
+						)
+					
+						//! Set value for alpha mask after resizing
+						pOutAlpha.data = new ImageData(finalMask, pInColor.width, pInColor.height);
+						pOutAlpha.width = pInColor.width;
+						pOutAlpha.height = pInColor.height;
+					}
+				}
+			})
+			.catch((e) => { 
+				//console.log("Cannot get alpha effects due to " + e); 
+			});
+		}
 	}
 
 	//! End tf container
@@ -513,6 +557,10 @@ export async function psy_seg_overlay_background(pPsySeg, pInColor, pInBackgroun
 	//! Overlay BG status
 	let status = false;
 
+	if (!getLicenseInitState()) {
+		await startCheckingLicense();
+	}
+
 	//! Start tf container
 	tf.engine().startScope();
 
@@ -523,10 +571,14 @@ export async function psy_seg_overlay_background(pPsySeg, pInColor, pInBackgroun
 	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
 
 	//! Overlay Background
-	if (pPsySeg.SmartEyes.model !== null) {
-		await psy_seg_overlay_background_internal(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)
-		.then((out) => { status = out })
-		.catch((e) => {});
+	if (pPsySeg !== null) {
+		if (pPsySeg.SmartEyes.model !== null) {
+			await psy_seg_overlay_background_internal(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)
+			.then((out) => { status = out; })
+			.catch((e) => { 
+				//console.log("Cannot get overlay effects (old) due to " + e); 
+			});
+		}
 	}
 
 	// End tf container
@@ -569,26 +621,37 @@ export async function psy_seg_overlay_background(pPsySeg, pInColor, pInBackgroun
  */
 export async function psy_seg_overlay_background_new(pPsySeg, pInColor, pInBackground, colorSpace, pOutColor, pPsySegExtraParams = null) {
 
+	//! Overlay BG status
+	let status = false;
+
 	//! Start tf container
 	tf.engine().startScope();
 
-	//! Default alpha buffer
-	//! Resizing input frame to model size
-	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192
-	const segHeight = pPsySeg.backend === 'tflite' ? 96 : 192
-	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
-
+	if (!getLicenseInitState()) {
+		await startCheckingLicense();
+	}
 	//! Remove background
-	const status = await psy_seg_remove_background(pPsySeg, pInColor, colorSpace, pOutColor, pPsySegExtraParams);
-
-	//! Plot background canvas
-	pPsySeg.canvasContext.putImageData(pInBackground.data, 0, 0);
-	pPsySeg.fgCanvasContext.clearRect(0, 0, pPsySeg.width, pPsySeg.height);
-	pPsySeg.fgCanvasContext.putImageData(pOutColor.data, 0, 0);
-	pPsySeg.canvasContext.drawImage(pPsySeg.fgCanvas, 0, 0);
-
-	//! Get output data
-	pOutColor.data = pPsySeg.canvasContext.getImageData(0, 0, pPsySeg.width, pPsySeg.height);
+	if (pPsySeg !== null) {
+		if (pPsySeg.SmartEyes.model !== null) {
+			await psy_seg_remove_background(pPsySeg, pInColor, colorSpace, pOutColor, pPsySegExtraParams)
+			.then((out) => { 
+				status = out;
+				if (status) {
+					//! Plot background canvas
+					pPsySeg.canvasContext.putImageData(pInBackground.data, 0, 0);
+					pPsySeg.fgCanvasContext.clearRect(0, 0, pPsySeg.width, pPsySeg.height);
+					pPsySeg.fgCanvasContext.putImageData(pOutColor.data, 0, 0);
+					pPsySeg.canvasContext.drawImage(pPsySeg.fgCanvas, 0, 0);
+					
+					//! Get output data
+					pOutColor.data = pPsySeg.canvasContext.getImageData(0, 0, pPsySeg.width, pPsySeg.height);
+				}
+			})
+			.catch((e) => { 
+				//console.log("Cannot get overlay effects (new) due to " + e); 
+			});
+		}
+	}
 
 	// End tf container
 	tf.engine().endScope();
@@ -624,11 +687,15 @@ export async function psy_seg_overlay_background_new(pPsySeg, pInColor, pInBackg
  */
 export async function psy_seg_blur_background(pPsySeg, pInColor, colorSpace, pOutColor, blurSize = 9, pPsySegExtraParams = null) {
 
-	//! Overlay BG status
+	//! Blur BG status
 	let status = false;
 
 	//! Start tf container
 	tf.engine().startScope();
+
+	if (!getLicenseInitState()) {
+		await startCheckingLicense();
+	}
 
 	//! Default alpha buffer
 	//! Resizing input frame to model size
@@ -636,11 +703,15 @@ export async function psy_seg_blur_background(pPsySeg, pInColor, colorSpace, pOu
 	const segHeight = pPsySeg.backend === 'tflite' ? 96 : 192;
 	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
 
-	//! Overlay Background
-	if (pPsySeg.SmartEyes.model !== null) {
-		await psy_seg_blur_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySegExtraParams)
-		.then((out) => { status = out; })
-		.catch((e) => {});
+	//! Blur Background
+	if (pPsySeg !== null) {
+		if (pPsySeg.SmartEyes.model !== null) {
+			await psy_seg_blur_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySegExtraParams)
+			.then((out) => { status = out; })
+			.catch((e) => { 
+				//console.log("Cannot get blur effects due to " + e); 
+			});
+		}
 	}
 
 	// End tf container
@@ -673,10 +744,16 @@ export async function psy_seg_blur_background(pPsySeg, pInColor, colorSpace, pOu
  *
  */
 export async function psy_seg_remove_background(pPsySeg, pInColor, colorSpace, pOutColor, pPsySegExtraParams = null) {
-	if (!pPsySeg.SmartEyes.model) return
+	
+	//! Remove Background Status
+	let status = false;
 
 	//! Start tf container
 	tf.engine().startScope();
+
+	if (!getLicenseInitState()) {
+		await startCheckingLicense();
+	}
 
 	//! Default alpha buffer
 	//! Resizing input frame to model size
@@ -685,11 +762,19 @@ export async function psy_seg_remove_background(pPsySeg, pInColor, colorSpace, p
 	let pOutAlpha = PsySegBuf(segWidth, segHeight, 4, null);
 
 	//! Remove background
-	const status = await psy_seg_remove_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams);
+	if (pPsySeg !== null) {
+		if (pPsySeg.SmartEyes.model !== null) {
+			await psy_seg_remove_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)
+			.then((out) => { status = out; })
+			.catch((e) => { 
+				//console.log("Cannot get remove background effects due to " + e); 
+			});
+		}
+	}
 
 	// End tf container
 	tf.engine().endScope();
 
 	// Return status
-	return status
+	return status;
 }

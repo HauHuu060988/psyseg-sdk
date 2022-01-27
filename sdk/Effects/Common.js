@@ -69,13 +69,14 @@ export async function psy_seg_get_alpha_internal(pPsySeg, pInColor, colorSpace, 
 			//! Running User Extraction
 			await pPsySeg.runUE(pInColor, pOutAlpha, colorSpace, isRemoveBG)
 			.then((UE_status) => { status = UE_status; })
-			.catch((e) => { console.log("Run User Extraction error with " + e); });
-
+			.catch((e) => { 
+				//console.log("Run User Extraction error with " + e); 
+			});
 		}
 	} catch (e) {
 		
 		//! logging error
-		console.log("Cannot get alpha mask due to " + e);
+		//console.log("Cannot get alpha mask due to " + e);
 	}
 
 	//! Return status
