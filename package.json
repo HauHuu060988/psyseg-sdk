@@ -23,6 +23,7 @@
   "devDependencies": {},
   "dependencies": {
     "@tensorflow/tfjs": "3.5.0",
-    "wasm-feature-detect": "^1.2.11"
+    "wasm-feature-detect": "^1.2.11",
+    "uuid": "^8.3.2"
   }
 }
