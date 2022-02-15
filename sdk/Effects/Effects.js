@@ -46,29 +46,29 @@ export async function psy_seg_overlay_background_internal(pPsySeg, pInColor, pIn
 
 	//! Overlay BG status
 	let status = false;
-	
+
 	switch (pPsySeg.backend) {
 		case "gpu": {
 			await OverlayBackgroundGPU(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)
 			.then(ret => status = ret)
-			.catch(e => {
-				//console.log("Cannot overlay background GPU due to " + e)
+			.catch((e) => {
+				console.log("Cannot overlay background GPU due to " + e);
 			});
 			break;
 		}	
 		case "wasm": {
 			await OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySeg.backend, pPsySegExtraParams)
 			.then(ret => status = ret)
-			.catch(e => {
-				//console.log("Cannot overlay background WASM due to " + e)
+			.catch((e) => {
+				console.log("Cannot overlay background WASM due to " + e);
 			});
 			break;
 		}
 		case "tflite": {
 			await OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySeg.backend, pPsySegExtraParams)
 			.then(ret => status = ret)
-			.catch(e => {
-				//console.log("Cannot overlay background WASM due to " + e)
+			.catch((e) => {
+				console.log("Cannot overlay background WASM due to " + e);
 			});
 			break;
 		}
@@ -120,24 +120,24 @@ export async function psy_seg_blur_background_internal(pPsySeg, pInColor, colorS
 		case "gpu": {
 			await BlurBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySegExtraParams)
 			.then(ret => status = ret)
-			.catch(e => {
-				//console.log("Cannot blur background GPU due to " + e)
+			.catch((e) => {
+				console.log("Cannot blur background GPU due to " + e)
 			});
 			break;
 		}	
 		case "wasm": {
 			await BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySeg.backend, pPsySegExtraParams)
 			.then(ret => status = ret)
-			.catch(e => {
-				//console.log("Cannot blur background WASM due to " + e)
+			.catch((e) => {
+				console.log("Cannot blur background WASM due to " + e)
 			});
 			break;
 		}
 		case "tflite": {
 			await BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySeg.backend, pPsySegExtraParams)
 			.then(ret => status = ret)
-			.catch(e => {
-				//console.log("Cannot blur background WASM due to " + e)
+			.catch((e) => {
+				console.log("Cannot blur background WASM due to " + e)
 			});
 			break;
 		}
@@ -196,7 +196,7 @@ export async function psy_seg_remove_background_internal(pPsySeg, pInColor, colo
 				break
 		}
 	} catch (e) {
-		//console.log(`Cannot remove background by ${pPsySeg.backend} due to`, e)
+		console.log(`Cannot remove background by ${pPsySeg.backend} due to`, e)
 	}
 	return false
 }

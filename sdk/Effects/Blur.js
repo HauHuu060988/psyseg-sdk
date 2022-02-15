@@ -117,17 +117,17 @@ export async function BlurBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha
 					status = true;
 
 				} else {
-          //console.log("Cannot get alpha mask without error notification");
+					console.log("Cannot get alpha mask without error notification");
 				}
 			})
 			.catch((e) => { 
-				//console.log("cannot get alpha mask due to " + e); 
+				console.log("cannot get alpha mask due to " + e); 
 			});
 		} else {
-			//console.log("Input has a problem, please re-check");
+			console.log("Input has a problem, please re-check");
 		}
 	} catch (e) {
-		//console.log("Cannot get alpha mask due to " + e);
+		console.log("Cannot get alpha mask due to " + e);
 	}
 
 	// Return status
@@ -250,17 +250,17 @@ export async function BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlph
 						status = true;
 
 					} else {
-						//console.log("Cannot get alpha mask without error notification");
+						console.log("Cannot get alpha mask without error notification");
 					}
 				})
 				.catch((e) => { 
-					//console.log("cannot get alpha mask due to " + e); 
+					console.log("cannot get alpha mask due to " + e); 
 				});
 		} else {
-			//console.log("Input has a problem, please re-check");
+			console.log("Input has a problem, please re-check");
 		}
 	} catch (e) {
-		//console.log("Cannot get alpha mask due to " + e);
+		console.log("Cannot get alpha mask due to " + e);
 	}
 
 	// Return status

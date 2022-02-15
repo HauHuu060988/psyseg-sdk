@@ -83,17 +83,17 @@ export async function OverlayBackgroundGPU(pPsySeg, pInColor, pInBackground, col
 					status = true;
 					
 				} else {
-          //console.log("Cannot get alpha mask without error notification");
+					console.log("Cannot get alpha mask without error notification");
 				}
 			})
 			.catch((e) => { 
-				//console.log("cannot get alpha mask due to " + e); 
+				console.log("cannot get alpha mask due to " + e); 
 			});
 		} else {
-			//console.log("Input has a problem, please re-check");
+			console.log("Input has a problem, please re-check");
 		}
 	} catch (e) {
-		//console.log("Cannot get alpha mask due to " + e);
+		console.log("Cannot get alpha mask due to " + e);
 	}
 
 	// Return status
@@ -243,17 +243,17 @@ export async function OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, co
 						status = true;
 
 					} else {
-						//console.log("Cannot get alpha mask without error notification");
+						console.log("Cannot get alpha mask without error notification");
 					}
 				})
 			.catch((e) => { 
-				//console.log("cannot get alpha mask due to " + e); 
+				console.log("cannot get alpha mask due to " + e); 
 			});
 		} else {
-			//console.log("Input has a problem, please re-check");
+			console.log("Input has a problem, please re-check");
 		}
 	} catch (e) {
-		//console.log("Cannot get alpha mask due to " + e);
+		console.log("Cannot get alpha mask due to " + e);
 	}
 
 	// Return status

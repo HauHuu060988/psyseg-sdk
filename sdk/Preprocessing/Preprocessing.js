@@ -15,7 +15,7 @@ export async function preProcessing(srcImage, srcColorSpace, srcSize, dstColorSp
     await convertColor(srcImage, srcColorSpace, dstColorSpace)
     .then((processedImg) => { colorspaceOut = processedImg })
     .catch((e) => { 
-        //console.log("Cannot covert colorspace due to " + e) 
+        console.log("Cannot covert colorspace due to " + e);
     });
 
     //! Resize src image
@@ -25,7 +25,7 @@ export async function preProcessing(srcImage, srcColorSpace, srcSize, dstColorSp
             resizeOut = processedImg; 
         })
         .catch((e) => { 
-            //console.log("Cannot convert size due to " + e) 
+            console.log("Cannot convert size due to " + e);
         });
     }
 

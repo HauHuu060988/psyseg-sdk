@@ -13,9 +13,6 @@ import {
 import { psy_seg_get_alpha_internal } from './Effects/Common.js';
 import { refine } from './Refinement/Refinement.js';
 
-//! license control
-import { getLicenseInitState, startCheckingLicense, stopCheckingLicense } from "./LicenseControl.js";
-
 //! Strict mode
 "use strict";
 
@@ -279,7 +276,7 @@ class PsySeg {
 			status = true;
 		})
 		.catch((e) => { 
-			//console.log("Cannot get alpha mask due to " + e); 
+			console.log("Cannot get alpha mask due to " + e); 
 		});
 
 		//! Return status
@@ -301,12 +298,6 @@ class PsySeg {
  * @arguments
  * @param pSetupInfo: + type: PsySegSetupInfo
  *                    + usage: provide setup information
- * @param psyseg_url: + type: String
- *                    + usage: local license file location
- * @param token: + type: String
- *               + usage: access token for license
- * @param key: + type: String
- *             + usage: access key for license
  * @param reload: + type: Boolean
  *                + usage: requesting to reload DNN model (default = true) 
  *                         (true = reload / false = keep previous)
@@ -314,10 +305,7 @@ class PsySeg {
  * @returns PsySeg instance (internal object)
  * 
  */
-export async function psy_seg_create(pSetupInfo, psyseg_url, token, key, reload = true) {
-
-	//! checking license
-	await startCheckingLicense(psyseg_url, token, key);
+export async function psy_seg_create(pSetupInfo, reload = true) {
 
 	//! Adding psyseg effects module
 	if ((!psyLoad) || (reload)) {
@@ -347,12 +335,6 @@ export async function psy_seg_create(pSetupInfo, psyseg_url, token, key, reload 
  * @arguments
  * @param pSetupInfo: + type: PsySegSetupInfo
  *                    + usage: provide setup information
- * @param psyseg_url: + type: String
- *                    + usage: local license file location
- * @param token: + type: String
- *               + usage: access token for license
- * @param key: + type: String
- *             + usage: access key for license
  * @param backend: + type: String
  *                 + usage: type of model backend. Currently, 3 types are
  *                          supported: "tflite" (default), "gpu", "wasm"
@@ -363,10 +345,7 @@ export async function psy_seg_create(pSetupInfo, psyseg_url, token, key, reload 
  * @returns PsySeg instance (internal object)
  * 
  */
-export async function psy_seg_create_internal(pSetupInfo, psyseg_url, token, key, backend = 'tflite', reload = true) {
-
-	//! checking license
-	await startCheckingLicense(psyseg_url, token, key);
+export async function psy_seg_create_internal(pSetupInfo, backend = 'tflite', reload = true) {
 
 	//! Adding psyseg effects module
 	if ((!psyLoad) || (reload)) {
@@ -399,9 +378,6 @@ export async function psy_seg_create_internal(pSetupInfo, psyseg_url, token, key
  * 
  */
 export async function psy_seg_destroy(pPsySeg) {
-
-	//! clear heart beat interval and inactive device uuid
-	await stopCheckingLicense();
 
 	//! Dispose model except "tflite" (automatically destroyed)
 	if (pPsySeg.backend !== "tflite") {
@@ -461,7 +437,7 @@ export async function psy_seg_create_background(bgData, colorSpace, bgSize, dstS
 	)
 	.then((outputData) => { processedBG = outputData; })
 	.catch((e) => { 
-		//console.log("Cannot create background due to " + e);
+		console.log("Cannot create background due to " + e);
 	});
 
 	//! Return PsySeg buffer
@@ -529,7 +505,7 @@ export async function psy_seg_get_alpha(pPsySeg, pInColor, colorSpace, pOutAlpha
 				}
 			})
 			.catch((e) => { 
-				//console.log("Cannot get alpha effects due to " + e); 
+				console.log("Cannot get alpha effects due to " + e); 
 			});
 		}
 	}
@@ -577,11 +553,6 @@ export async function psy_seg_overlay_background(pPsySeg, pInColor, pInBackgroun
 	//! Overlay BG status
 	let status = false;
 
-	// Check license status
-	if (!getLicenseInitState()) {
-		await startCheckingLicense();
-	}
-
 	//! Start tf container
 	tf.engine().startScope();
 
@@ -597,7 +568,7 @@ export async function psy_seg_overlay_background(pPsySeg, pInColor, pInBackgroun
 			await psy_seg_overlay_background_internal(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)
 			.then((out) => { status = out; })
 			.catch((e) => { 
-				//console.log("Cannot get overlay effects (old) due to " + e); 
+				console.log("Cannot get overlay effects (old) due to " + e); 
 			});
 		}
 	}
@@ -648,10 +619,6 @@ export async function psy_seg_overlay_background_new(pPsySeg, pInColor, pInBackg
 	//! Start tf container
 	tf.engine().startScope();
 
-	// Check license status
-	if (!getLicenseInitState()) {
-		await startCheckingLicense();
-	}
 	//! Remove background
 	if (pPsySeg !== null) {
 		if (pPsySeg.SmartEyes.model !== null) {
@@ -670,7 +637,7 @@ export async function psy_seg_overlay_background_new(pPsySeg, pInColor, pInBackg
 				}
 			})
 			.catch((e) => { 
-				//console.log("Cannot get overlay effects (new) due to " + e); 
+				console.log("Cannot get overlay effects (new) due to " + e); 
 			});
 		}
 	}
@@ -715,11 +682,6 @@ export async function psy_seg_blur_background(pPsySeg, pInColor, colorSpace, pOu
 	//! Start tf container
 	tf.engine().startScope();
 
-	// Check license status
-	if (!getLicenseInitState()) {
-		await startCheckingLicense();
-	}
-
 	//! Default alpha buffer
 	//! Resizing input frame to model size
 	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192;
@@ -732,7 +694,7 @@ export async function psy_seg_blur_background(pPsySeg, pInColor, colorSpace, pOu
 			await psy_seg_blur_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, pPsySegExtraParams)
 			.then((out) => { status = out; })
 			.catch((e) => { 
-				//console.log("Cannot get blur effects due to " + e); 
+				console.log("Cannot get blur effects due to " + e); 
 			});
 		}
 	}
@@ -774,11 +736,6 @@ export async function psy_seg_remove_background(pPsySeg, pInColor, colorSpace, p
 	//! Start tf container
 	tf.engine().startScope();
 
-	// Check license status
-	if (!getLicenseInitState()) {
-		await startCheckingLicense();
-	}
-
 	//! Default alpha buffer
 	//! Resizing input frame to model size
 	const segWidth = pPsySeg.backend === 'tflite' ? 160 : 192;
@@ -791,7 +748,7 @@ export async function psy_seg_remove_background(pPsySeg, pInColor, colorSpace, p
 			await psy_seg_remove_background_internal(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)
 			.then((out) => { status = out; })
 			.catch((e) => { 
-				//console.log("Cannot get remove background effects due to " + e); 
+				console.log("Cannot get remove background effects due to " + e); 
 			});
 		}
 	}

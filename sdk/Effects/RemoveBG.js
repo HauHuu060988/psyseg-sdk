@@ -30,7 +30,7 @@ import { psy_seg_get_alpha_internal } from './Common.js'
  */
 export async function RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams = null) {
   if (!pInColor.data) {
-    //console.log('Input has a problem, please re-check');
+    console.log('Input has a problem, please re-check');
     return false;
   }
 
@@ -40,7 +40,7 @@ export async function RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlp
 
     //! Check returned status
     if (!alphaStatus) {
-      //console.log('Cannot get alpha mask without error notification');
+      console.log('Cannot get alpha mask without error notification');
       return false;
     }
   
@@ -72,7 +72,7 @@ export async function RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlp
     pOutColor.data = new ImageData(imageBuffer, pInColor.width, pInColor.height);
     
   } catch (e) {
-    //console.log('Cannot get alpha mask at RemoveBackgroundGPU due to ', e);
+    console.log('Cannot get alpha mask at RemoveBackgroundGPU due to ', e);
     return false;
   }
 
@@ -108,7 +108,7 @@ export async function RemoveBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlp
  */
 export async function RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, type, pPsySegExtraParams = null) {
   if (!pInColor.data) {
-    //console.log('Input has a problem, please re-check');
+    console.log('Input has a problem, please re-check');
     return false;
   }
 
@@ -119,7 +119,7 @@ export async function RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAl
 
     //! Check returned status
     if (!alphaStatus) {
-      //console.log('Cannot get alpha mask without error notification');
+      console.log('Cannot get alpha mask without error notification');
       return false;
     }
 
@@ -180,7 +180,7 @@ export async function RemoveBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAl
     Module._destroy_buffer(alphaMemory);
 
   } catch (e) {
-    //console.log('Cannot get alpha mask at RemoveBackgroundWASM due to ', e);
+    console.log('Cannot get alpha mask at RemoveBackgroundWASM due to ', e);
     return false;
   }
 
