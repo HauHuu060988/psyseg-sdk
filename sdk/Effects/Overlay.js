@@ -69,22 +69,22 @@ export async function OverlayBackgroundGPU(pPsySeg, pInColor, pInBackground, col
 					mask = await tf.browser.fromPixels(pOutAlpha.data).div(tf.scalar(255.0));
 
 					//! Blending background
-                    const blend_out =  MergeBlending(
-                        fgImg,
-                        bgImg,
-                        mask
-                    );
+					const blend_out =  MergeBlending(
+						fgImg,
+						bgImg,
+						mask
+					);
 
-                    //! Get ImageData in type Uint8ClampedArray
+					//! Get ImageData in type Uint8ClampedArray
 					let convert = await tf.browser.toPixels(blend_out);
 					pOutColor.data = new ImageData(convert, pInBackground.width, pInBackground.height);
 
 					// Successful Return
-          status = true;
+					status = true;
 					
 				} else {
           //console.log("Cannot get alpha mask without error notification");
-        }
+				}
 			})
 			.catch((e) => { 
 				//console.log("cannot get alpha mask due to " + e); 
@@ -180,7 +180,7 @@ export async function OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, co
 								erodeValue = 2 * pPsySegExtraParams.erode - 1;
 							}
 						}
-
+						
 						//! Input frame
 						input_image = pInColor.data.data;
 
@@ -228,10 +228,10 @@ export async function OverlayBackgroundWASM(pPsySeg, pInColor, pInBackground, co
 						//! Convert data array to ImageData
 						let imageData = new Uint8ClampedArray(new Uint8Array(Module.HEAP8.buffer, memory, memorySize));
 						let image = new ImageData(imageData, pInColor.width, pInColor.height);
-                        pOutColor.data = image;
+						pOutColor.data = image;
 
 						// memory management
-                        //delete alpha_image;
+						//delete alpha_image;
 						// alpha_image.delete();
 						// input_image.delete();
 						// bg_image.delete();

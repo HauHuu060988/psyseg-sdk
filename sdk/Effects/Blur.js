@@ -94,22 +94,22 @@ export async function BlurBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha
 					fgImg = await tf.browser.fromPixels(pInColor.data).div(tf.scalar(255.0));
 					mask = await tf.browser.fromPixels(pOutAlpha.data).div(tf.scalar(255.0));
 
-                    //! Get blurring background
-                    const blur_bgim = Blurring(
-                        fgImg,
-                        blurSize,
+					//! Get blurring background
+					const blur_bgim = Blurring(
+						fgImg,
+						blurSize,
 						pInColor.width,
 						pInColor.height
-                    );
+					);
 
 					//! Blending background
-                    const blend_out =  MergeBlending(
-                        fgImg,
-                        blur_bgim,
-                        mask
-                    );
+					const blend_out =  MergeBlending(
+						fgImg,
+						blur_bgim,
+						mask
+						);
 
-                    //! Get ImageData in type Uint8ClampedArray
+						//! Get ImageData in type Uint8ClampedArray
 					let convert = await tf.browser.toPixels(blend_out.mul(tf.scalar(0.96)));
 					pOutColor.data = new ImageData(convert, pInColor.width, pInColor.height);
 
@@ -118,7 +118,7 @@ export async function BlurBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha
 
 				} else {
           //console.log("Cannot get alpha mask without error notification");
-        }
+				}
 			})
 			.catch((e) => { 
 				//console.log("cannot get alpha mask due to " + e); 
@@ -165,7 +165,7 @@ export async function BlurBackgroundGPU(pPsySeg, pInColor, colorSpace, pOutAlpha
  */
 export async function BlurBackgroundWASM(pPsySeg, pInColor, colorSpace, pOutAlpha, pOutColor, blurSize, type, pPsySegExtraParams = null) {
 
-    //! Overlay BG status
+	//! Overlay BG status
 	let status = false;
 	let alpha_image;
 	let input_image;

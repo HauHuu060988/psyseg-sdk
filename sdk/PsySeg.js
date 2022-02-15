@@ -1,5 +1,6 @@
 // Tensorflow JS library
 import * as tf from '@tensorflow/tfjs';
+import psysegModule from "./model/wasm-import/psyseg.mjs";
 
 // Dependent functions
 import { SmartEyes } from "./ML/ML.js";
@@ -11,16 +12,15 @@ import {
 } from "./Effects/Effects.js";
 import { psy_seg_get_alpha_internal } from './Effects/Common.js';
 import { refine } from './Refinement/Refinement.js';
-import psysegModule from "./model/wasm-import/psyseg.mjs";
-
-psysegModule().then(module => window.Module = module)
-	.catch(error => console.error('Load psyseg module error: ', error))
 
 //! license control
 import { getLicenseInitState, startCheckingLicense, stopCheckingLicense } from "./LicenseControl.js";
 
 //! Strict mode
 "use strict";
+
+//! Loading PsySeg status
+let psyLoad = false;
 
 /** Colorspace enumerators
  * 
@@ -209,7 +209,7 @@ class PsySeg {
 		this.canvas.width = this.width;
 		this.canvas.height = this.height;
 		this.canvasContext = this.canvas.getContext('2d');
-    
+
 		//! Foreground canvas
 		this.fgCanvas = document.createElement("canvas");
 		this.fgCanvas.width = this.width;
@@ -238,7 +238,7 @@ class PsySeg {
 		//! Get size of model
 		const segWidth = this.backend === 'tflite' ? 160 : 192
 		const segHeight = this.backend === 'tflite' ? 96 : 192
-    	let modelSize = {'width': segWidth, 'height': segHeight};
+		let modelSize = {'width': segWidth, 'height': segHeight};
 
 		//! Running UE
 		await this.SmartEyes.run(inputBuf, colorSpace, isRemoveBG)
@@ -319,6 +319,16 @@ export async function psy_seg_create(pSetupInfo, psyseg_url, token, key, reload 
 	//! checking license
 	await startCheckingLicense(psyseg_url, token, key);
 
+	//! Adding psyseg effects module
+	if ((!psyLoad) || (reload)) {
+		await psysegModule()
+		.then(module => {
+			window.Module = module;
+			psyLoad = true;
+		})
+		.catch(error => console.error('Load psyseg module error: ', error))
+	}
+
 	//! Return PsySeg objects
 	return new PsySeg(pSetupInfo, "tflite", reload);
 }
@@ -357,6 +367,16 @@ export async function psy_seg_create_internal(pSetupInfo, psyseg_url, token, key
 
 	//! checking license
 	await startCheckingLicense(psyseg_url, token, key);
+
+	//! Adding psyseg effects module
+	if ((!psyLoad) || (reload)) {
+		await psysegModule()
+		.then(module => {
+			window.Module = module;
+			psyLoad = true;
+		})
+		.catch(error => console.error('Load psyseg module error: ', error))
+	}
 
 	//! Return PsySeg objects
 	return new PsySeg(pSetupInfo, backend, reload);
@@ -547,7 +567,7 @@ export async function psy_seg_get_alpha(pPsySeg, pInColor, colorSpace, pOutAlpha
  *                   + usage: overlayed background output frame with
  *                            same size & colorspace with input frame.
  * @param pPsySegExtraParams: + type: PsySegExtraParams
- * 							  + usage: advanced configuration parameters
+ *                            + usage: advanced configuration parameters
  * 
  ** @return true on success, false otherwise
  *
@@ -557,6 +577,7 @@ export async function psy_seg_overlay_background(pPsySeg, pInColor, pInBackgroun
 	//! Overlay BG status
 	let status = false;
 
+	// Check license status
 	if (!getLicenseInitState()) {
 		await startCheckingLicense();
 	}
@@ -614,7 +635,7 @@ export async function psy_seg_overlay_background(pPsySeg, pInColor, pInBackgroun
  *                   + usage: overlayed background output frame with
  *                            same size & colorspace with input frame.
  * @param pPsySegExtraParams: + type: PsySegExtraParams
- * 							  + usage: advanced configuration parameters
+ *                            + usage: advanced configuration parameters
  * 
  ** @return true on success, false otherwise
  *
@@ -627,6 +648,7 @@ export async function psy_seg_overlay_background_new(pPsySeg, pInColor, pInBackg
 	//! Start tf container
 	tf.engine().startScope();
 
+	// Check license status
 	if (!getLicenseInitState()) {
 		await startCheckingLicense();
 	}
@@ -680,7 +702,7 @@ export async function psy_seg_overlay_background_new(pPsySeg, pInColor, pInBackg
  * @param blurSize: + type: Number (odd = 3,5,7,... / default = 13)
  *                  + usage: blurred level
  * @param pPsySegExtraParams: + type: PsySegExtraParams
- * 							  + usage: advanced configuration parameters
+ *                            + usage: advanced configuration parameters
  * 
  ** @return true on success, false otherwise
  *
@@ -693,6 +715,7 @@ export async function psy_seg_blur_background(pPsySeg, pInColor, colorSpace, pOu
 	//! Start tf container
 	tf.engine().startScope();
 
+	// Check license status
 	if (!getLicenseInitState()) {
 		await startCheckingLicense();
 	}
@@ -738,7 +761,7 @@ export async function psy_seg_blur_background(pPsySeg, pInColor, colorSpace, pOu
  *                   + usage: blurred background output frame with
  *                            same size & colorspace with input frame.
  * @param pPsySegExtraParams: + type: PsySegExtraParams
- * 							  + usage: advanced configuration parameters
+ *                            + usage: advanced configuration parameters
  * 
  ** @return true on success, false otherwise
  *
@@ -751,6 +774,7 @@ export async function psy_seg_remove_background(pPsySeg, pInColor, colorSpace, p
 	//! Start tf container
 	tf.engine().startScope();
 
+	// Check license status
 	if (!getLicenseInitState()) {
 		await startCheckingLicense();
 	}

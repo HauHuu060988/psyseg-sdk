@@ -46,7 +46,7 @@ export async function psy_seg_overlay_background_internal(pPsySeg, pInColor, pIn
 
 	//! Overlay BG status
 	let status = false;
-
+	
 	switch (pPsySeg.backend) {
 		case "gpu": {
 			await OverlayBackgroundGPU(pPsySeg, pInColor, pInBackground, colorSpace, pOutAlpha, pOutColor, pPsySegExtraParams)

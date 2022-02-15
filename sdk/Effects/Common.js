@@ -15,14 +15,14 @@ import * as tf from '@tensorflow/tfjs';
  */
 export function MergeBlending(fgImg, bgImg, mask) {
 
-    let blend_out = tf.tidy(() => {
+	let blend_out = tf.tidy(() => {
 		const img_crop = fgImg.mul(mask);
 		const bgd_crop = bgImg.mul(tf.scalar(1.0).sub(mask));
 		const result = tf.add(img_crop, bgd_crop);
 		return result;
-    });
+	});
 
-    return blend_out;
+	return blend_out;
 }
 
 /**
